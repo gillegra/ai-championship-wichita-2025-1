@@ -8,6 +8,7 @@ const INITIAL_STATE: GameState = {
   clickPower: 1,
   passiveIncomeRate: 0,
   unlockedUpgrades: [],
+  upgradeCounts: {},
   moduleProgress: {
     habitat: 0,
     power: 0,
@@ -45,12 +46,18 @@ export const useGameState = () => {
 
     setGameState(prev => {
       if (prev.innovationCapital < upgrade.cost) return prev;
-      if (prev.unlockedUpgrades.includes(upgradeId)) return prev;
+
+      const isFirstPurchase = !prev.unlockedUpgrades.includes(upgradeId);
+      const currentCount = prev.upgradeCounts[upgradeId] || 0;
 
       let newState = {
         ...prev,
         innovationCapital: prev.innovationCapital - upgrade.cost,
-        unlockedUpgrades: [...prev.unlockedUpgrades, upgradeId],
+        unlockedUpgrades: isFirstPurchase ? [...prev.unlockedUpgrades, upgradeId] : prev.unlockedUpgrades,
+        upgradeCounts: {
+          ...prev.upgradeCounts,
+          [upgradeId]: currentCount + 1,
+        },
       };
 
       // Apply upgrade effect
@@ -66,7 +73,7 @@ export const useGameState = () => {
       return newState;
     });
 
-    // Handle multipliers separately
+    // Handle multipliers separately (these stack multiplicatively)
     if (upgrade.effect.type === 'clickMultiplier') {
       setClickMultiplier(prev => prev * upgrade.effect.value);
     } else if (upgrade.effect.type === 'passiveMultiplier') {
@@ -138,10 +145,10 @@ export const useGameState = () => {
   // Calculate overall progress (0-100)
   const overallProgress = Object.values(gameState.moduleProgress).reduce((sum, val) => sum + val, 0) / 5;
 
-  // Get available upgrades (not yet purchased)
-  const availableUpgrades = upgrades.filter(u => !gameState.unlockedUpgrades.includes(u.id));
+  // All upgrades are always available for purchase (can buy multiple times)
+  const availableUpgrades = upgrades;
 
-  // Get purchased upgrades
+  // Get purchased upgrades (those with at least one purchase)
   const purchasedUpgrades = upgrades.filter(u => gameState.unlockedUpgrades.includes(u.id));
 
   // Calculate playtime in seconds

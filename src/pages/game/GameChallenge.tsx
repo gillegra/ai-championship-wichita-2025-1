@@ -30,9 +30,12 @@ export default function GameChallenge() {
     <div
       className="game-challenge"
       style={{
-        minHeight: '100vh',
+        height: '100vh',
+        overflow: 'auto',
         backgroundColor: '#111827',
         fontFamily: 'system-ui, -apple-system, sans-serif',
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
       {/* Tutorial Overlay */}
@@ -51,52 +54,60 @@ export default function GameChallenge() {
         />
       )}
 
-      {/* Game Header */}
-      <GameHeader
-        innovationCapital={gameState.innovationCapital}
-        overallProgress={overallProgress}
-        passiveIncomeRate={gameState.passiveIncomeRate}
-      />
+      {/* Sticky Game Header */}
+      <div style={{ position: 'sticky', top: 0, zIndex: 10 }}>
+        <GameHeader
+          innovationCapital={gameState.innovationCapital}
+          overallProgress={overallProgress}
+          passiveIncomeRate={gameState.passiveIncomeRate}
+        />
+      </div>
 
-      {/* Main Game Area */}
+      {/* Main Game Area - 2 Column Grid */}
       <div
         className="game-content"
         style={{
-          maxWidth: '1400px',
+          flex: 1,
+          padding: '12px',
+          maxWidth: '1200px',
           margin: '0 auto',
-          padding: '24px',
+          width: '100%',
         }}
       >
-        {/* Top Row: Clicker and Moonbase */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-            gap: '24px',
-            marginBottom: '24px',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '12px',
+            alignItems: 'start',
           }}
         >
-          <ClickerPanel
-            onClick={handleClick}
-            clickPower={gameState.clickPower}
-            passiveIncomeRate={gameState.passiveIncomeRate}
-          />
-          <MoonbasePanel
-            modules={modules}
-            moduleProgress={gameState.moduleProgress}
-            innovationCapital={gameState.innovationCapital}
-            onInvest={investInModule}
-          />
-        </div>
+          {/* Left Column: Clicker */}
+          <div>
+            <ClickerPanel
+              onClick={handleClick}
+              clickPower={gameState.clickPower}
+              passiveIncomeRate={gameState.passiveIncomeRate}
+            />
+          </div>
 
-        {/* Bottom Row: Upgrades Shop */}
-        <div>
-          <UpgradesShop
-            availableUpgrades={availableUpgrades}
-            purchasedUpgrades={purchasedUpgrades}
-            innovationCapital={gameState.innovationCapital}
-            onPurchase={purchaseUpgrade}
-          />
+          {/* Right Column: Moonbase + Upgrades */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <MoonbasePanel
+              modules={modules}
+              moduleProgress={gameState.moduleProgress}
+              innovationCapital={gameState.innovationCapital}
+              onInvest={investInModule}
+            />
+
+            <UpgradesShop
+              availableUpgrades={availableUpgrades}
+              purchasedUpgrades={purchasedUpgrades}
+              innovationCapital={gameState.innovationCapital}
+              onPurchase={purchaseUpgrade}
+              upgradeCounts={gameState.upgradeCounts}
+            />
+          </div>
         </div>
       </div>
 
@@ -104,15 +115,15 @@ export default function GameChallenge() {
       <div
         style={{
           textAlign: 'center',
-          padding: '24px',
+          padding: '8px',
           color: '#9ca3af',
-          fontSize: '14px',
+          fontSize: '11px',
+          backgroundColor: '#1f2937',
+          borderTop: '1px solid #374151',
         }}
       >
         <p style={{ margin: 0 }}>
-          Built with pride for the Air Capital of the World 🛩️
-        </p>
-        <p style={{ margin: '8px 0 0 0', fontSize: '12px' }}>
+          Built with pride for the Air Capital of the World 🛩️ |
           Playtime: {Math.floor(playtime / 60)}:{(playtime % 60).toString().padStart(2, '0')} |
           Clicks: {gameState.totalClicks.toLocaleString()}
         </p>

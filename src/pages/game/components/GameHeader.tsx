@@ -20,7 +20,7 @@ export const GameHeader: React.FC<GameHeaderProps> = ({
 
   return (
     <div className="game-header" style={{
-      padding: '20px',
+      padding: '8px 16px',
       backgroundColor: '#1f2937',
       color: 'white',
       borderBottom: '2px solid #3b82f6',
@@ -29,22 +29,22 @@ export const GameHeader: React.FC<GameHeaderProps> = ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: '16px',
+        marginBottom: '6px',
       }}>
         <div>
-          <h1 style={{ margin: 0, fontSize: '24px', fontWeight: 'bold' }}>
+          <h1 style={{ margin: 0, fontSize: '16px', fontWeight: 'bold' }}>
             Wichita to the Moon
           </h1>
-          <p style={{ margin: '4px 0 0 0', fontSize: '14px', color: '#9ca3af' }}>
+          <p style={{ margin: '2px 0 0 0', fontSize: '10px', color: '#9ca3af' }}>
             From Air Capital to Space Frontier
           </p>
         </div>
         <div style={{ textAlign: 'right' }}>
-          <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#fbbf24' }}>
+          <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#fbbf24' }}>
             {formatNumber(innovationCapital)} IC
           </div>
           {passiveIncomeRate > 0 && (
-            <div style={{ fontSize: '14px', color: '#86efac' }}>
+            <div style={{ fontSize: '11px', color: '#86efac' }}>
               +{formatNumber(passiveIncomeRate)}/sec
             </div>
           )}
@@ -54,7 +54,7 @@ export const GameHeader: React.FC<GameHeaderProps> = ({
         progress={overallProgress}
         label="Moonbase Progress"
         color="#8b5cf6"
-        height="20px"
+        height="12px"
       />
     </div>
   );

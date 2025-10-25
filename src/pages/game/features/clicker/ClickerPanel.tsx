@@ -35,13 +35,12 @@ export const ClickerPanel: React.FC<ClickerPanelProps> = ({
       className="clicker-panel"
       style={{
         backgroundColor: '#f3f4f6',
-        borderRadius: '12px',
-        padding: '24px',
-        minHeight: '400px',
+        borderRadius: '8px',
+        padding: '12px',
         position: 'relative',
       }}
     >
-      <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px', color: '#1f2937' }}>
+      <h2 style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '8px', color: '#1f2937' }}>
         🏭 Wichita Innovation Center
       </h2>
 
@@ -50,15 +49,15 @@ export const ClickerPanel: React.FC<ClickerPanelProps> = ({
         onClick={handleClick}
         style={{
           backgroundColor: '#3b82f6',
-          borderRadius: '16px',
-          padding: '60px 40px',
+          borderRadius: '12px',
+          padding: '24px 20px',
           textAlign: 'center',
           cursor: 'pointer',
           userSelect: 'none',
           transition: 'transform 0.1s, box-shadow 0.1s',
           position: 'relative',
           overflow: 'hidden',
-          border: '4px solid #1e40af',
+          border: '3px solid #1e40af',
         }}
         onMouseDown={(e) => {
           e.currentTarget.style.transform = 'scale(0.95)';
@@ -70,13 +69,13 @@ export const ClickerPanel: React.FC<ClickerPanelProps> = ({
           e.currentTarget.style.transform = 'scale(1)';
         }}
       >
-        <div style={{ fontSize: '64px', marginBottom: '16px' }}>
+        <div style={{ fontSize: '40px', marginBottom: '8px' }}>
           ✈️
         </div>
-        <div style={{ fontSize: '24px', fontWeight: 'bold', color: 'white', marginBottom: '8px' }}>
+        <div style={{ fontSize: '16px', fontWeight: 'bold', color: 'white', marginBottom: '4px' }}>
           Click to Generate IC
         </div>
-        <div style={{ fontSize: '16px', color: '#bfdbfe' }}>
+        <div style={{ fontSize: '12px', color: '#bfdbfe' }}>
           +{clickPower} IC per click
         </div>
 
@@ -90,7 +89,7 @@ export const ClickerPanel: React.FC<ClickerPanelProps> = ({
               top: anim.y,
               color: '#fbbf24',
               fontWeight: 'bold',
-              fontSize: '24px',
+              fontSize: '18px',
               pointerEvents: 'none',
               animation: 'floatUp 1s ease-out forwards',
             }}
@@ -101,15 +100,15 @@ export const ClickerPanel: React.FC<ClickerPanelProps> = ({
       </div>
 
       <div style={{
-        marginTop: '20px',
-        padding: '16px',
+        marginTop: '12px',
+        padding: '10px',
         backgroundColor: '#e5e7eb',
-        borderRadius: '8px',
+        borderRadius: '6px',
       }}>
-        <div style={{ fontSize: '14px', color: '#4b5563', marginBottom: '8px' }}>
+        <div style={{ fontSize: '11px', color: '#4b5563', marginBottom: '4px' }}>
           <strong>Click Power:</strong> {clickPower} IC
         </div>
-        <div style={{ fontSize: '14px', color: '#4b5563' }}>
+        <div style={{ fontSize: '11px', color: '#4b5563' }}>
           <strong>Passive Income:</strong> {passiveIncomeRate > 0 ? `+${passiveIncomeRate} IC/sec` : 'None yet'}
         </div>
       </div>
@@ -122,7 +121,7 @@ export const ClickerPanel: React.FC<ClickerPanelProps> = ({
           }
           100% {
             opacity: 0;
-            transform: translateY(-60px);
+            transform: translateY(-40px);
           }
         }
       `}</style>
