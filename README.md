@@ -106,6 +106,10 @@ This application follows a **feature-based architecture** where code is organize
 
 This project was built for the AI Championship Wichita 2025 - Architect Challenge.
 
+## References
+
+- [Project Vision & High-Level Overview](https://docs.google.com/document/d/10wFO0kH4dSxpM89E1HsRr-z-TxXcfdvX-Km2PV53A9U/edit?tab=t.0) - Team vision document and project goals
+
 ## License
 
 TBD
