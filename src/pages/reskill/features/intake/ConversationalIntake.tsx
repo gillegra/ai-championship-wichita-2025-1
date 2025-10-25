@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { IntakeData } from '../../types';
 import type { Message } from './RileyChat';
 import RileyChat from './RileyChat';
@@ -23,8 +23,8 @@ const ConversationalIntake: React.FC<ConversationalIntakeProps> = ({ onComplete 
   const [isTyping, setIsTyping] = useState(false);
   const [currentRileyMessage, setCurrentRileyMessage] = useState<RileyMessage | null>(null);
   const [formData, setFormData] = useState<Partial<IntakeData>>({});
-  const [showWelcome, setShowWelcome] = useState(true);
   const [currentQuestion, setCurrentQuestion] = useState<QuestionConfig | null>(null);
+  const hasInitialized = useRef(false);
 
   // Get context for message interpolation (e.g., {firstName})
   const getContext = (): Record<string, string> => {
@@ -58,15 +58,16 @@ const ConversationalIntake: React.FC<ConversationalIntakeProps> = ({ onComplete 
     }, rileyMsg.delayMs);
   };
 
-  // Initialize conversation
+  // Initialize conversation (only once, even in StrictMode)
   useEffect(() => {
-    if (showWelcome) {
+    if (!hasInitialized.current) {
+      hasInitialized.current = true;
+
       // Show welcome message
       showRileyMessage(RILEY_WELCOME, () => {
         // Then show intro message
         showRileyMessage(RILEY_INTRO, () => {
           // Then start first question
-          setShowWelcome(false);
           askNextQuestion();
         });
       });
