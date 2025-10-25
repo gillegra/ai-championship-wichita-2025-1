@@ -4,7 +4,7 @@
   max-width: 700px;
   margin: 0 auto;
   padding: 0.5rem;
-  padding-top: 4rem; /* Space for fixed progress bar */
+  padding-top: 7rem; /* Space for fixed header + progress bar */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -16,10 +16,10 @@
   padding: 0.5rem 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: fixed;
-  top: 0;
+  top: 70px; /* Below the header */
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 50;
   border-bottom: 1px solid #e0e0e0;
 }
 
@@ -426,7 +426,7 @@
 @media (max-width: 768px) {
   .conversational-intake {
     padding: 0.25rem;
-    padding-top: 4rem;
+    padding-top: 10rem; /* More space on mobile for stacked header */
   }
 
   .chat-messages {
