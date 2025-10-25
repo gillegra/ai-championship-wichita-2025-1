@@ -1,0 +1,433 @@
+/* Plan View Styles */
+
+.plan-view {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.plan-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.plan-header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.plan-header p {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+}
+
+.plan-section {
+  margin-bottom: 3rem;
+}
+
+.plan-section h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.section-description {
+  color: #7f8c8d;
+  margin-bottom: 1.5rem;
+}
+
+/* Plan Summary */
+.plan-summary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 3rem;
+}
+
+.summary-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.summary-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.summary-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.stat-icon {
+  font-size: 2rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.stat-value {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* Skill Gap Analysis */
+.skill-gap-analysis {
+  display: grid;
+  gap: 1rem;
+}
+
+.skill-gap-card {
+  background: white;
+  border-left: 4px solid #3498db;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.skill-gap-card.priority-high {
+  border-left-color: #e74c3c;
+}
+
+.skill-gap-card.priority-medium {
+  border-left-color: #f39c12;
+}
+
+.skill-gap-card.priority-low {
+  border-left-color: #3498db;
+}
+
+.skill-gap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.skill-gap-header h4 {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.priority-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.priority-badge.priority-high {
+  background: #fee;
+  color: #e74c3c;
+}
+
+.priority-badge.priority-medium {
+  background: #fef8e6;
+  color: #f39c12;
+}
+
+.priority-badge.priority-low {
+  background: #e8f4f8;
+  color: #3498db;
+}
+
+.skill-levels {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.level-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.level-label {
+  font-size: 0.85rem;
+  color: #95a5a6;
+}
+
+.level-value {
+  font-weight: 600;
+  color: #2c3e50;
+  text-transform: capitalize;
+}
+
+.level-arrow {
+  font-size: 1.5rem;
+  color: #3498db;
+}
+
+.skill-gap-acquire {
+  padding-top: 1rem;
+  border-top: 1px solid #ecf0f1;
+}
+
+.skill-gap-acquire strong {
+  color: #2c3e50;
+}
+
+.skill-gap-acquire p {
+  margin-top: 0.5rem;
+  color: #7f8c8d;
+  line-height: 1.5;
+}
+
+/* Milestones List */
+.milestones-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.milestone-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.milestone-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.milestone-header:hover {
+  background: #f8f9fa;
+}
+
+.milestone-number {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #3498db;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.milestone-info {
+  flex: 1;
+}
+
+.milestone-info h4 {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  margin: 0 0 0.5rem 0;
+}
+
+.milestone-duration {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.milestone-toggle {
+  background: none;
+  border: none;
+  color: #3498db;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.milestone-details {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  border-top: 1px solid #ecf0f1;
+}
+
+.milestone-description {
+  color: #7f8c8d;
+  line-height: 1.6;
+  margin: 1rem 0;
+}
+
+.milestone-dependencies {
+  background: #fff3cd;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+.milestone-tasks h5 {
+  margin: 1.5rem 0 0.75rem 0;
+  color: #2c3e50;
+}
+
+.milestone-tasks ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.milestone-tasks li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.milestone-tasks input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+/* Resources List */
+.resources-list {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.resources-tabs {
+  display: flex;
+  border-bottom: 2px solid #ecf0f1;
+}
+
+.resources-tabs .tab {
+  flex: 1;
+  padding: 1rem;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #7f8c8d;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.resources-tabs .tab:hover {
+  background: #f8f9fa;
+}
+
+.resources-tabs .tab.active {
+  color: #3498db;
+  border-bottom: 3px solid #3498db;
+  margin-bottom: -2px;
+}
+
+.resources-content {
+  padding: 1.5rem;
+}
+
+.resource-card {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.resource-card:last-child {
+  margin-bottom: 0;
+}
+
+.resource-card h4 {
+  font-size: 1.3rem;
+  color: #2c3e50;
+  margin: 0 0 0.5rem 0;
+}
+
+.resource-provider,
+.resource-type {
+  color: #3498db;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.resource-description {
+  color: #7f8c8d;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.resource-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.meta-item {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+.meta-item strong {
+  color: #2c3e50;
+}
+
+.resource-contact p {
+  margin: 0.5rem 0;
+  color: #7f8c8d;
+}
+
+.resource-contact strong {
+  color: #2c3e50;
+}
+
+.resource-services {
+  margin: 1rem 0;
+}
+
+.resource-services strong {
+  color: #2c3e50;
+}
+
+.resource-services ul {
+  margin: 0.5rem 0 0 1.5rem;
+  color: #7f8c8d;
+}
+
+.resource-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #3498db;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.resource-link:hover {
+  text-decoration: underline;
+}
+
+/* Plan Actions */
+.plan-actions {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.btn-large {
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+}
