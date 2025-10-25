@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import type { QuestionConfig, RileyMessage } from './rileyPersona';
-import { getRandomVariation } from './rileyPersona';
 import ConversationalInput from './ConversationalInput';
 
 interface Message {
@@ -24,7 +23,7 @@ interface RileyChatProps {
 
 const RileyChat: React.FC<RileyChatProps> = ({
   currentQuestion,
-  rileyMessage,
+  rileyMessage: _rileyMessage,
   isTyping,
   value,
   onChange,

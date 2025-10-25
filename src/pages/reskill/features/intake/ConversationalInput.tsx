@@ -14,7 +14,7 @@ const ConversationalInput: React.FC<ConversationalInputProps> = ({
   value,
   onChange,
   onSubmit,
-  context,
+  context: _context,
 }) => {
   const [localValue, setLocalValue] = useState<any>(value || '');
   const [tagInput, setTagInput] = useState('');

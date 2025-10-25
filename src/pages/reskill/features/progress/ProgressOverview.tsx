@@ -5,7 +5,7 @@ interface ProgressOverviewProps {
   userProgress: UserProgress;
 }
 
-const ProgressOverview: React.FC<ProgressOverviewProps> = ({ plan, userProgress }) => {
+const ProgressOverview: React.FC<ProgressOverviewProps> = ({ plan: _plan, userProgress }) => {
   const daysSinceStart = Math.floor(
     (Date.now() - userProgress.startedAt.getTime()) / (1000 * 60 * 60 * 24)
   );

@@ -1,6 +1,6 @@
-import { useState, Suspense } from 'react';
+import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import type { IntakeData, CareerPlan, UserProgress, AgentType } from './pages/reskill/types';
+import type { IntakeData, CareerPlan, UserProgress, AgentType } from '@/types';
 import Header from './shared/components/Header';
 import ConversationalIntake from './pages/reskill/features/intake/ConversationalIntake';
 import PlanView from './pages/reskill/features/plan/PlanView';
@@ -160,7 +160,7 @@ const generateMockPlan = (intakeData: IntakeData): CareerPlan => {
 
 const generateMockProgress = (plan: CareerPlan): UserProgress => {
   const milestoneProgress: Record<string, any> = {};
-  plan.milestones.forEach((milestone) => {
+  plan.milestones.forEach((milestone: CareerPlan['milestones'][number]) => {
     milestoneProgress[milestone.id] = {
       milestoneId: milestone.id,
       status: 'not-started' as const,
@@ -183,7 +183,7 @@ const generateMockProgress = (plan: CareerPlan): UserProgress => {
 };
 
 function App() {
-  const [intakeData, setIntakeData] = useState<IntakeData | null>(null);
+  const [_intakeData, setIntakeData] = useState<IntakeData | null>(null);
   const [careerPlan, setCareerPlan] = useState<CareerPlan | null>(null);
   const [userProgress, setUserProgress] = useState<UserProgress | null>(null);
   const [isGeneratingPlan, setIsGeneratingPlan] = useState(false);
@@ -221,14 +221,14 @@ function App() {
 
     if (taskId && completed !== undefined) {
       // Update task completion
-      const milestone = careerPlan.milestones.find((m) => m.id === milestoneId);
+      const milestone = careerPlan.milestones.find((m: CareerPlan['milestones'][number]) => m.id === milestoneId);
       if (milestone) {
-        const task = milestone.tasks.find((t) => t.id === taskId);
+        const task = milestone.tasks.find((t: CareerPlan['milestones'][number]['tasks'][number]) => t.id === taskId);
         if (task) {
           task.completed = completed;
           task.completedAt = completed ? new Date() : undefined;
 
-          milestoneProgress.completedTasks = milestone.tasks.filter((t) => t.completed).length;
+          milestoneProgress.completedTasks = milestone.tasks.filter((t: CareerPlan['milestones'][number]['tasks'][number]) => t.completed).length;
 
           // Update milestone status
           if (milestoneProgress.completedTasks === milestone.tasks.length) {
@@ -262,7 +262,7 @@ function App() {
 
   const handleSendAgentMessage = async (
     agentType: AgentType,
-    message: string
+    _message: string
   ): Promise<string> => {
     // Simulate API call to agent
     await new Promise((resolve) => setTimeout(resolve, 1000));

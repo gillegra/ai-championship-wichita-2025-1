@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import type { IntakeData } from '../../types';
+import type { IntakeData } from '@/types';
 import type { Message } from './RileyChat';
 import RileyChat from './RileyChat';
 import {
@@ -156,7 +156,7 @@ const ConversationalIntake: React.FC<ConversationalIntakeProps> = ({ onComplete 
 
   // Handle field value change
   const handleFieldChange = (field: string, value: any) => {
-    setFormData((prev) => ({
+    setFormData((prev: Partial<IntakeData>) => ({
       ...prev,
       [field]: value,
     }));
