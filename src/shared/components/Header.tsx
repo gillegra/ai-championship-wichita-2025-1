@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage }) => {
       <div className="header-content">
         <Link to="/" className="header-logo">
           <span className="logo-icon">🎯</span>
-          <span className="logo-text">Kansas Career Pathways</span>
+          <span className="logo-text">ReSkill KS</span>
         </Link>
 
         <nav className="header-nav">

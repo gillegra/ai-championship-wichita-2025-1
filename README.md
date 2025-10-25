@@ -1,6 +1,6 @@
-# Kansas Career Pathways
+# ReSkill KS
 
-A workforce development application for the Kansas Department of Labor, designed to help citizens upskill and change careers through personalized career transition plans and AI-guided support.
+Empowering Kansas citizens to discover career opportunities, develop new skills, and advance professionally through personalized career transition plans and AI-guided support.
 
 ## Features
 

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Context
 
-This is a workforce development application for the Kansas Department of Labor designed to help citizens upskill and change careers. The system features an interactive intake portal, AI-driven personalized career transition plans, progress tracking, and multiple agent personas to guide users through their learning journey.
+**ReSkill KS** empowers Kansas citizens to discover career opportunities, develop new skills, and advance professionally. The system features an interactive intake portal, AI-driven personalized career transition plans, progress tracking, and multiple agent personas to guide users through their learning journey.
 
 **Mission-Critical Constraint**: This application serves public-sector users who may have varying levels of digital literacy. Accessibility, simplicity, and clear guidance are paramount.
 

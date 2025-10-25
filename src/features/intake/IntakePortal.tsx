@@ -44,8 +44,8 @@ const IntakePortal: React.FC<IntakePortalProps> = ({ onComplete }) => {
   return (
     <div className="intake-portal">
       <header className="intake-header">
-        <h1>Kansas Career Pathways</h1>
-        <p>Let's build your personalized career transition plan</p>
+        <h1>ReSkill KS</h1>
+        <p>Discover career opportunities, develop new skills, and advance professionally</p>
       </header>
 
       <StepIndicator
