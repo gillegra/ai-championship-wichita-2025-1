@@ -299,8 +299,8 @@ function AppContent() {
           <Loading message="Generating your personalized career plan..." />
         ) : (
           <Routes>
-              {/* Root redirect to ReSkill Landing */}
-              <Route path="/" element={<Navigate to="/reskill" replace />} />
+              {/* Root - Landing Page */}
+              <Route path="/" element={<LandingPage />} />
 
               {/* Challenge 1: ReSkill KS Intake */}
               <Route path="/reskill" element={<ConversationalIntake onComplete={handleIntakeComplete} />} />
