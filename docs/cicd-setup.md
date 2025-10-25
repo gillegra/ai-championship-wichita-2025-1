@@ -1,14 +1,14 @@
 # CI/CD Setup Guide
 
-Automated build and deployment for the ReSkill KS monorepo using GitHub Actions and AWS S3 + CloudFront.
+Automated build and deployment for the ReSkill KS application using GitHub Actions and AWS S3 + CloudFront.
 
 ## Features
 
-- **Smart monorepo detection**: Automatically detects which projects changed and deploys only those
+- **Automatic deployments**: Push to main branch triggers build and deploy
 - **Skip CI commits**: Add `[skip-ci]` or `[no-cicd]` to commit messages to bypass deployment
 - **Manual deployments**: Trigger deployments manually via GitHub Actions UI
 - **S3 + CloudFront**: Fast, cheap static hosting with global CDN
-- **Parallel deployments**: Multiple projects deploy simultaneously
+- **Bun-powered builds**: Lightning-fast builds using Bun runtime
 
 ## Quick Start
 
@@ -55,9 +55,9 @@ The workflow is now active! It will trigger on:
 ### Automatic deployments
 
 When you push to `main`:
-1. **Detection**: Scans git diff to find changed projects
-2. **Build**: Runs `bun install` and `bun run build` for each project
-3. **Deploy**: Uploads build output to S3, invalidates CloudFront cache
+1. **Check skip flag**: Checks commit message for `[skip-ci]` or `[no-cicd]` tags
+2. **Build**: Runs `bun install` and `bun run build` at root level
+3. **Deploy**: Uploads build output (dist/) to S3, invalidates CloudFront cache if configured
 
 ### Skip deployments
 
@@ -72,38 +72,40 @@ git commit -m "Update docs [skip-ci]"
 1. Go to **Actions** tab in GitHub
 2. Click **Build and Deploy** workflow
 3. Click **Run workflow**
-4. Optionally specify a single project to deploy
-5. Click **Run workflow**
+4. Click **Run workflow** to confirm
 
-## Project Structure Requirements
+## Project Structure
 
-Each project must have:
-- `package.json` at project root
-- `bun run build` script that creates output
-- Build output in one of: `dist/`, `build/`, `out/`, `.output/`
+The ReSkill KS application has:
+- `package.json` at root with `bun run build` script
+- Build output generated in `dist/` directory
+- Multiple challenge pages under `src/pages/` (reskill, game, c3, c4)
+- All challenges deploy together as a single SPA
 
-Example monorepo structure:
+Project structure:
 ```
 /
-├── frontend/              # Project 1
-│   ├── package.json
-│   └── dist/             # Build output
-├── admin-dashboard/       # Project 2
-│   ├── package.json
-│   └── build/            # Build output
-├── landing-page/          # Project 3
-│   ├── package.json
-│   └── out/              # Build output
+├── package.json          # Root package.json with build script
+├── src/
+│   ├── pages/
+│   │   ├── reskill/     # Challenge 1
+│   │   ├── game/        # Challenge 2
+│   │   ├── c3/          # Challenge 3
+│   │   └── c4/          # Challenge 4
+│   └── shared/          # Shared components
+├── dist/                # Build output (generated)
 └── .github/
-    └── workflows/
-        └── deploy.yml
+    ├── workflows/
+    │   └── deploy.yml
+    └── scripts/
+        └── deploy-to-aws.sh
 ```
 
 ## AWS Resources Created
 
-For each project, the deployment creates:
+The deployment creates:
 
-- **S3 Bucket**: `reskill-ks-{project-name}-{environment}`
+- **S3 Bucket**: `reskill-ks-reskill-ks-{environment}` (default: dev)
   - Configured for static website hosting
   - Public read access for static files
   - Optimized cache headers
@@ -130,23 +132,23 @@ To add CloudFront CDN to your deployment:
 
 ## Deployment URLs
 
-After deployment, your sites will be available at:
+After deployment, your site will be available at:
 
-- **S3 website URL**: `http://reskill-ks-{project}-{env}.s3-website-{region}.amazonaws.com`
+- **S3 website URL**: `http://reskill-ks-reskill-ks-dev.s3-website-{region}.amazonaws.com`
 - **CloudFront URL** (if configured): `https://{distribution-id}.cloudfront.net`
 - **Custom domain** (if configured): `https://yourdomain.com`
 
-Check the GitHub Actions logs for exact URLs after deployment.
+Check the GitHub Actions logs for exact URLs after each deployment.
 
 ## Troubleshooting
 
 ### Build fails with "command not found"
 
-Make sure your `package.json` has a `build` script:
+Make sure your root `package.json` has a `build` script:
 ```json
 {
   "scripts": {
-    "build": "vite build"  // or your build command
+    "build": "tsc && vite build"
   }
 }
 ```
@@ -157,11 +159,11 @@ Make sure your `package.json` has a `build` script:
 - Check IAM user has S3 and CloudFront permissions
 - Confirm access key is still active in AWS IAM console
 
-### Project not detected
+### Build directory not found
 
-- Ensure `package.json` exists in project directory
-- Verify changes are in the project directory (not just root)
-- Check GitHub Actions logs for "Detecting changed projects" output
+- Ensure `bun run build` creates a `dist/` directory
+- Check build output in GitHub Actions logs
+- Verify Vite config outputs to `dist/`
 
 ### S3 bucket creation fails
 
@@ -200,28 +202,27 @@ Bucket naming: `reskill-ks-{project}-{environment}`
 4. Create SSL certificate in AWS Certificate Manager (us-east-1 region)
 5. Update Route53 or your DNS provider with CloudFront CNAME
 
-### Multiple AWS accounts
-
-To deploy different projects to different AWS accounts:
-1. Create separate IAM users per account
-2. Add account-specific secrets: `AWS_ACCESS_KEY_ID_PROJECT1`, etc.
-3. Modify workflow to select secrets based on project name
-
 ## Scripts Reference
 
-### `.github/scripts/detect-projects.sh`
-Scans monorepo for projects (directories with `package.json`) and determines which changed based on git diff.
-
 ### `.github/scripts/deploy-to-aws.sh`
-Deploys a built project to S3, optionally invalidates CloudFront cache. Creates bucket if doesn't exist.
+Deploys the built application to S3 and optionally invalidates CloudFront cache. Creates S3 bucket if it doesn't exist.
 
 **Usage**:
 ```bash
 ./.github/scripts/deploy-to-aws.sh <project-name>
 ```
 
+**Example**:
+```bash
+# Deploy with default settings
+./.github/scripts/deploy-to-aws.sh "reskill-ks"
+
+# Deploy to production environment
+DEPLOY_ENV=production ./.github/scripts/deploy-to-aws.sh "reskill-ks"
+```
+
 **Environment variables**:
-- `AWS_ACCESS_KEY_ID`: AWS access key
-- `AWS_SECRET_ACCESS_KEY`: AWS secret key
+- `AWS_ACCESS_KEY_ID`: AWS access key (required)
+- `AWS_SECRET_ACCESS_KEY`: AWS secret key (required)
 - `AWS_REGION`: AWS region (default: us-east-1)
-- `DEPLOY_ENV`: Environment name (default: dev)
+- `DEPLOY_ENV`: Environment name for bucket naming (default: dev)

@@ -15,19 +15,19 @@ fi
 
 echo "🚀 Deploying $PROJECT_NAME to AWS..."
 
-# Determine build output directory
+# Determine build output directory (at root level for single app)
 # Try common patterns: dist, build, out, .output
 BUILD_DIR=""
 for dir in "dist" "build" "out" ".output"; do
-  if [[ -d "$PROJECT_NAME/$dir" ]]; then
-    BUILD_DIR="$PROJECT_NAME/$dir"
+  if [[ -d "$dir" ]]; then
+    BUILD_DIR="$dir"
     echo "📁 Found build directory: $BUILD_DIR"
     break
   fi
 done
 
 if [[ -z "$BUILD_DIR" ]]; then
-  echo "❌ Error: No build directory found (checked: dist, build, out, .output)"
+  echo "❌ Error: No build directory found at root (checked: dist, build, out, .output)"
   exit 1
 fi
 

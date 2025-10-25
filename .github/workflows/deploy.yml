@@ -4,24 +4,14 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
-    inputs:
-      project:
-        description: 'Specific project to deploy (leave empty for all changed projects)'
-        required: false
-        type: string
+  workflow_dispatch:  # Allow manual trigger from GitHub Actions UI
 
 jobs:
-  detect-changes:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    outputs:
-      projects: ${{ steps.detect.outputs.projects }}
-      skip_ci: ${{ steps.check-skip.outputs.skip_ci }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 2  # Need 2 commits to compare changes
 
       - name: Check for [skip-ci] or [no-cicd] in commit message
         id: check-skip
@@ -34,49 +24,30 @@ jobs:
             echo "skip_ci=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Detect changed projects
-        id: detect
-        if: steps.check-skip.outputs.skip_ci == 'false'
-        run: |
-          chmod +x ./.github/scripts/detect-projects.sh
-          ./.github/scripts/detect-projects.sh
-
-  build-and-deploy:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.skip_ci == 'false'
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        project: ${{ fromJson(needs.detect-changes.outputs.projects) }}
-      fail-fast: false  # Continue deploying other projects even if one fails
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
       - name: Setup Bun
+        if: steps.check-skip.outputs.skip_ci == 'false'
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
 
-      - name: Install dependencies for ${{ matrix.project }}
-        working-directory: ${{ matrix.project }}
+      - name: Install dependencies
+        if: steps.check-skip.outputs.skip_ci == 'false'
         run: bun install
 
-      - name: Build ${{ matrix.project }}
-        working-directory: ${{ matrix.project }}
+      - name: Build application
+        if: steps.check-skip.outputs.skip_ci == 'false'
         run: bun run build
 
       - name: Configure AWS credentials
+        if: steps.check-skip.outputs.skip_ci == 'false'
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION || 'us-east-1' }}
 
-      - name: Deploy ${{ matrix.project }} to S3 + CloudFront
-        env:
-          PROJECT_NAME: ${{ matrix.project }}
+      - name: Deploy to S3 + CloudFront
+        if: steps.check-skip.outputs.skip_ci == 'false'
         run: |
           chmod +x ./.github/scripts/deploy-to-aws.sh
-          ./.github/scripts/deploy-to-aws.sh "$PROJECT_NAME"
+          ./.github/scripts/deploy-to-aws.sh "reskill-ks"
