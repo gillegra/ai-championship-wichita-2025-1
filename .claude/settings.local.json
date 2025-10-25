@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bun run type-check:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

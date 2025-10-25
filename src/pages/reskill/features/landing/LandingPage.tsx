@@ -100,6 +100,68 @@ const LandingPage: React.FC = () => {
             </button>
           </div>
         </div>
+
+        {/* Challenge Navigation */}
+        <div className="challenges-section">
+          <h2 className="challenges-title">AI Championship Wichita Challenges</h2>
+          <div className="challenges-grid">
+            <div className="challenge-card">
+              <div className="challenge-number">Challenge 1</div>
+              <h3 className="challenge-name">ReSkill KS</h3>
+              <p className="challenge-description">
+                Career transition platform with AI-guided intake and personalized planning.
+              </p>
+              <button
+                className="btn-challenge"
+                onClick={() => navigate('/reskill/intake')}
+              >
+                Start Challenge →
+              </button>
+            </div>
+
+            <div className="challenge-card">
+              <div className="challenge-number">Challenge 2</div>
+              <h3 className="challenge-name">Game Challenge</h3>
+              <p className="challenge-description">
+                Interactive game experience (details TBD).
+              </p>
+              <button
+                className="btn-challenge"
+                onClick={() => navigate('/game')}
+              >
+                View Challenge →
+              </button>
+            </div>
+
+            <div className="challenge-card">
+              <div className="challenge-number">Challenge 3</div>
+              <h3 className="challenge-name">Challenge 3</h3>
+              <p className="challenge-description">
+                Coming soon - details to be announced.
+              </p>
+              <button
+                className="btn-challenge"
+                onClick={() => navigate('/c3')}
+              >
+                View Challenge →
+              </button>
+            </div>
+
+            <div className="challenge-card">
+              <div className="challenge-number">Challenge 4</div>
+              <h3 className="challenge-name">Challenge 4</h3>
+              <p className="challenge-description">
+                Coming soon - details to be announced.
+              </p>
+              <button
+                className="btn-challenge"
+                onClick={() => navigate('/c4')}
+              >
+                View Challenge →
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
