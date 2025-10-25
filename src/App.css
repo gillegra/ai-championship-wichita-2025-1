@@ -5,9 +5,20 @@
   display: flex;
   flex-direction: column;
   background: #f5f7fa;
+  overflow: hidden; /* Prevent body scroll bounce */
 }
 
 .app-main {
   flex: 1;
   padding: 0;
+  padding-top: 70px; /* Space for fixed header */
+  overflow-y: auto; /* Allow content scrolling only */
+  height: calc(100vh - 70px);
+}
+
+@media (max-width: 768px) {
+  .app-main {
+    padding-top: 120px; /* More space for taller header on mobile */
+    height: calc(100vh - 120px);
+  }
 }
