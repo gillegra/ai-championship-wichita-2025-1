@@ -59,105 +59,50 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Feature Cards */}
-        <div className="feature-cards">
-          <div className="feature-card">
-            <h3 className="feature-title">In-demand Careers</h3>
-            <p className="feature-description">
-              See roles growing in the Wichita region and what they pay.
-            </p>
-            <button
-              className="btn-feature"
-              onClick={() => navigate('/reskill/intake')}
-            >
-              Explore careers
-            </button>
-          </div>
+        {/* Challenge Showcase */}
+        <div className="challenges-showcase">
+          <h2 className="showcase-title">AI Championship Wichita 2025 - Architect Track</h2>
 
-          <div className="feature-card">
-            <h3 className="feature-title">Scholarships & Aid</h3>
-            <p className="feature-description">
-              Learn about the <strong>Kansas Promise Scholarship</strong> and <strong>Wichita Promise</strong> pathways.
-            </p>
-            <button
-              className="btn-feature"
-              onClick={() => navigate('/reskill/intake')}
-            >
-              See scholarships
-            </button>
-          </div>
-
-          <div className="feature-card">
-            <h3 className="feature-title">Support Services</h3>
-            <p className="feature-description">
-              Find GED, ESL, and resume help via NexStep Alliance and Wichita Public Library.
-            </p>
-            <button
-              className="btn-feature"
-              onClick={() => navigate('/reskill/intake')}
-            >
-              Find support
-            </button>
-          </div>
-        </div>
-
-        {/* Challenge Navigation */}
-        <div className="challenges-section">
-          <h2 className="challenges-title">AI Championship Wichita Challenges</h2>
-          <div className="challenges-grid">
-            <div className="challenge-card">
-              <div className="challenge-number">Challenge 1</div>
-              <h3 className="challenge-name">ReSkill KS</h3>
-              <p className="challenge-description">
-                Career transition platform with AI-guided intake and personalized planning.
+          <div className="feature-cards">
+            <div className="feature-card featured-primary">
+              <div className="challenge-badge">Challenge 1 - Primary</div>
+              <h3 className="feature-title">ReSkill KS</h3>
+              <p className="feature-description">
+                AI-powered career transition platform with conversational intake, personalized planning, and progress tracking for Kansas workers.
               </p>
               <button
-                className="btn-challenge"
+                className="btn-feature btn-primary"
                 onClick={() => navigate('/reskill/intake')}
               >
-                Start Challenge →
+                Start Career Assessment →
               </button>
             </div>
 
-            <div className="challenge-card">
-              <div className="challenge-number">Challenge 2</div>
-              <h3 className="challenge-name">Game Challenge</h3>
-              <p className="challenge-description">
-                Interactive game experience (details TBD).
+            <div className="feature-card">
+              <div className="challenge-badge">Challenge 2</div>
+              <h3 className="feature-title">Interactive Game</h3>
+              <p className="feature-description">
+                Gamified experience demonstrating AI-driven interactions and engagement patterns.
               </p>
               <button
-                className="btn-challenge"
+                className="btn-feature"
                 onClick={() => navigate('/game')}
               >
-                View Challenge →
+                Play Game →
               </button>
             </div>
 
-            <div className="challenge-card">
-              <div className="challenge-number">Challenge 3</div>
-              <h3 className="challenge-name">Challenge 3</h3>
-              <p className="challenge-description">
-                Coming soon - details to be announced.
+            <div className="feature-card">
+              <div className="challenge-badge">Challenge 3</div>
+              <h3 className="feature-title">Wichita Tech Scene</h3>
+              <p className="feature-description">
+                Mockup showcasing Wichita's growing technology ecosystem and innovation community.
               </p>
               <button
-                className="btn-challenge"
+                className="btn-feature"
                 onClick={() => navigate('/c3')}
               >
-                View Challenge →
-              </button>
-            </div>
-
-            <div className="challenge-card">
-              <div className="challenge-number">Challenge 4</div>
-              <h3 className="challenge-name">Challenge 4</h3>
-              <p className="challenge-description">
-                Coming soon - details to be announced.
-              </p>
-              <button
-                className="btn-challenge"
-                onClick={() => navigate('/c4')}
-              >
-                View Challenge →
+                View Mockup →
               </button>
             </div>
           </div>
