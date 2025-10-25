@@ -70,13 +70,13 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({ onComplete }) 
       <div
         className="tutorial-content"
         style={{
-          backgroundColor: '#1f2937',
-          color: 'white',
+          backgroundColor: '#1a2332',
+          color: '#f5f1e3',
           padding: '40px',
           borderRadius: '16px',
           maxWidth: '500px',
           textAlign: 'center',
-          border: '3px solid #3b82f6',
+          border: '3px solid #2563eb',
         }}
       >
         <div style={{ fontSize: '64px', marginBottom: '16px' }}>
@@ -97,7 +97,7 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({ onComplete }) 
                 width: '12px',
                 height: '12px',
                 borderRadius: '50%',
-                backgroundColor: index === currentStep ? '#3b82f6' : '#4b5563',
+                backgroundColor: index === currentStep ? '#2563eb' : '#4b5563',
               }}
             />
           ))}
@@ -122,8 +122,8 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({ onComplete }) 
             onClick={handleNext}
             style={{
               padding: '12px 24px',
-              backgroundColor: '#3b82f6',
-              color: 'white',
+              backgroundColor: '#2563eb',
+              color: '#f5f1e3',
               border: 'none',
               borderRadius: '8px',
               cursor: 'pointer',

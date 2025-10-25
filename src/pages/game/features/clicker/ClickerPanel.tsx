@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
+import { ProgressBar } from '../../components/ProgressBar';
 
 interface ClickerPanelProps {
   onClick: () => void;
   clickPower: number;
   passiveIncomeRate: number;
+  overallProgress: number;
 }
 
 export const ClickerPanel: React.FC<ClickerPanelProps> = ({
   onClick,
   clickPower,
   passiveIncomeRate,
+  overallProgress,
 }) => {
   const [clickAnimations, setClickAnimations] = useState<Array<{ id: number; x: number; y: number }>>([]);
 
@@ -48,7 +51,7 @@ export const ClickerPanel: React.FC<ClickerPanelProps> = ({
         className="click-area"
         onClick={handleClick}
         style={{
-          backgroundColor: '#3b82f6',
+          backgroundColor: '#2563eb',
           borderRadius: '12px',
           padding: '24px 20px',
           textAlign: 'center',
@@ -87,7 +90,7 @@ export const ClickerPanel: React.FC<ClickerPanelProps> = ({
               position: 'absolute',
               left: anim.x,
               top: anim.y,
-              color: '#fbbf24',
+              color: '#f2b136',
               fontWeight: 'bold',
               fontSize: '18px',
               pointerEvents: 'none',
@@ -111,6 +114,24 @@ export const ClickerPanel: React.FC<ClickerPanelProps> = ({
         <div style={{ fontSize: '11px', color: '#4b5563' }}>
           <strong>Passive Income:</strong> {passiveIncomeRate > 0 ? `+${passiveIncomeRate} IC/sec` : 'None yet'}
         </div>
+      </div>
+
+      {/* Moonbase Overall Progress */}
+      <div style={{
+        marginTop: '12px',
+        padding: '10px',
+        backgroundColor: '#1f2937',
+        borderRadius: '6px',
+      }}>
+        <div style={{ fontSize: '12px', fontWeight: 'bold', color: '#fff', marginBottom: '6px' }}>
+          🌙 Moonbase Progress
+        </div>
+        <ProgressBar
+          progress={overallProgress}
+          showPercentage={true}
+          color="#8b5cf6"
+          height="12px"
+        />
       </div>
 
       <style>{`

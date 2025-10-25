@@ -36,10 +36,11 @@ export const MoonbasePanel: React.FC<MoonbasePanelProps> = ({
     <div
       className="moonbase-panel"
       style={{
-        backgroundColor: '#1f2937',
+        backgroundColor: '#1a2332',
         borderRadius: '8px',
         padding: '12px',
-        color: 'white',
+        color: '#f5f1e3',
+        border: '1px solid #2563eb',
       }}
     >
       <div
@@ -50,13 +51,13 @@ export const MoonbasePanel: React.FC<MoonbasePanelProps> = ({
           marginBottom: isExpanded ? '8px' : '0',
           display: 'flex',
           alignItems: 'center',
-          gap: '6px',
+          justifyContent: 'space-between',
           cursor: 'pointer',
           userSelect: 'none',
         }}
       >
+        <span>🌙 Moonbase Construction</span>
         <span style={{ transition: 'transform 0.2s', display: 'inline-block', transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)' }}>▶</span>
-        🌙 Moonbase Construction
       </div>
 
       {isExpanded && <div>
@@ -119,8 +120,8 @@ export const MoonbasePanel: React.FC<MoonbasePanelProps> = ({
                     disabled={!investAmounts[module.id] || investAmounts[module.id] > innovationCapital}
                     style={{
                       padding: '6px 12px',
-                      backgroundColor: '#3b82f6',
-                      color: 'white',
+                      backgroundColor: '#2563eb',
+                      color: '#f5f1e3',
                       border: 'none',
                       borderRadius: '4px',
                       cursor: 'pointer',

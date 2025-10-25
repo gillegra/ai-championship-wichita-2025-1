@@ -32,10 +32,15 @@ export default function GameChallenge() {
       style={{
         height: '100vh',
         overflow: 'auto',
-        backgroundColor: '#111827',
+        backgroundColor: '#1a2332',
         fontFamily: 'system-ui, -apple-system, sans-serif',
         display: 'flex',
         flexDirection: 'column',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
       }}
     >
       {/* Tutorial Overlay */}
@@ -53,15 +58,6 @@ export default function GameChallenge() {
           onPlayAgain={resetGame}
         />
       )}
-
-      {/* Sticky Game Header */}
-      <div style={{ position: 'sticky', top: 0, zIndex: 10 }}>
-        <GameHeader
-          innovationCapital={gameState.innovationCapital}
-          overallProgress={overallProgress}
-          passiveIncomeRate={gameState.passiveIncomeRate}
-        />
-      </div>
 
       {/* Main Game Area - 2 Column Grid */}
       <div
@@ -82,12 +78,17 @@ export default function GameChallenge() {
             alignItems: 'start',
           }}
         >
-          {/* Left Column: Clicker */}
-          <div>
+          {/* Left Column: Game Header + Clicker */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <GameHeader
+              innovationCapital={gameState.innovationCapital}
+              passiveIncomeRate={gameState.passiveIncomeRate}
+            />
             <ClickerPanel
               onClick={handleClick}
               clickPower={gameState.clickPower}
               passiveIncomeRate={gameState.passiveIncomeRate}
+              overallProgress={overallProgress}
             />
           </div>
 
@@ -118,8 +119,8 @@ export default function GameChallenge() {
           padding: '8px',
           color: '#9ca3af',
           fontSize: '11px',
-          backgroundColor: '#1f2937',
-          borderTop: '1px solid #374151',
+          backgroundColor: '#1a2332',
+          borderTop: '1px solid #2563eb',
         }}
       >
         <p style={{ margin: 0 }}>

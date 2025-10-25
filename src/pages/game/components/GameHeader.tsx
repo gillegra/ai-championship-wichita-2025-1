@@ -1,15 +1,12 @@
 import React from 'react';
-import { ProgressBar } from './ProgressBar';
 
 interface GameHeaderProps {
   innovationCapital: number;
-  overallProgress: number;
   passiveIncomeRate: number;
 }
 
 export const GameHeader: React.FC<GameHeaderProps> = ({
   innovationCapital,
-  overallProgress,
   passiveIncomeRate,
 }) => {
   const formatNumber = (num: number): string => {
@@ -20,42 +17,37 @@ export const GameHeader: React.FC<GameHeaderProps> = ({
 
   return (
     <div className="game-header" style={{
-      padding: '8px 16px',
-      backgroundColor: '#1f2937',
-      color: 'white',
-      borderBottom: '2px solid #3b82f6',
+      padding: '12px 16px',
+      backgroundColor: '#1a2332',
+      color: '#f5f1e3',
+      borderBottom: '2px solid #2563eb',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
     }}>
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '6px',
-      }}>
-        <div>
-          <h1 style={{ margin: 0, fontSize: '16px', fontWeight: 'bold' }}>
-            Wichita to the Moon
-          </h1>
-          <p style={{ margin: '2px 0 0 0', fontSize: '10px', color: '#9ca3af' }}>
-            From Air Capital to Space Frontier
-          </p>
-        </div>
-        <div style={{ textAlign: 'right' }}>
-          <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#fbbf24' }}>
-            {formatNumber(innovationCapital)} IC
-          </div>
-          {passiveIncomeRate > 0 && (
-            <div style={{ fontSize: '11px', color: '#86efac' }}>
-              +{formatNumber(passiveIncomeRate)}/sec
-            </div>
-          )}
-        </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <img
+          src="/wichita-ttm-logo.webp"
+          alt="Wichita to the Moon Logo"
+          style={{
+            height: '48px',
+            width: 'auto',
+          }}
+        />
+        <h1 style={{ margin: 0, fontSize: '16px', fontWeight: 'bold', color: '#f5f1e3' }}>
+          Wichita to the Moon
+        </h1>
       </div>
-      <ProgressBar
-        progress={overallProgress}
-        label="Moonbase Progress"
-        color="#8b5cf6"
-        height="12px"
-      />
+      <div style={{ textAlign: 'right' }}>
+        <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#f2b136' }}>
+          {formatNumber(innovationCapital)} IC
+        </div>
+        {passiveIncomeRate > 0 && (
+          <div style={{ fontSize: '11px', color: '#86efac' }}>
+            +{formatNumber(passiveIncomeRate)}/sec
+          </div>
+        )}
+      </div>
     </div>
   );
 };

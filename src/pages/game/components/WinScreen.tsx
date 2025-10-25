@@ -51,19 +51,19 @@ export const WinScreen: React.FC<WinScreenProps> = ({
       <div
         className="win-screen-content"
         style={{
-          backgroundColor: '#1f2937',
-          color: 'white',
+          backgroundColor: '#1a2332',
+          color: '#f5f1e3',
           padding: '40px',
           borderRadius: '16px',
           maxWidth: '600px',
           textAlign: 'center',
-          border: '3px solid #fbbf24',
+          border: '3px solid #f2b136',
         }}
       >
         <div style={{ fontSize: '64px', marginBottom: '16px' }}>
           🌙 🚀
         </div>
-        <h1 style={{ fontSize: '36px', fontWeight: 'bold', margin: '0 0 16px 0', color: '#fbbf24' }}>
+        <h1 style={{ fontSize: '36px', fontWeight: 'bold', margin: '0 0 16px 0', color: '#f2b136' }}>
           MOONBASE OPERATIONAL!
         </h1>
         <p style={{ fontSize: '18px', color: '#9ca3af', marginBottom: '32px' }}>
@@ -107,8 +107,8 @@ export const WinScreen: React.FC<WinScreenProps> = ({
         <button
           onClick={onPlayAgain}
           style={{
-            backgroundColor: '#3b82f6',
-            color: 'white',
+            backgroundColor: '#2563eb',
+            color: '#f5f1e3',
             padding: '16px 32px',
             fontSize: '18px',
             fontWeight: 'bold',
@@ -117,8 +117,8 @@ export const WinScreen: React.FC<WinScreenProps> = ({
             cursor: 'pointer',
             transition: 'background-color 0.2s',
           }}
-          onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#2563eb'}
-          onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#3b82f6'}
+          onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#1e40af'}
+          onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#2563eb'}
         >
           🔄 PLAY AGAIN
         </button>

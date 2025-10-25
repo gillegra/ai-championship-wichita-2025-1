@@ -60,13 +60,15 @@ export const UpgradesShop: React.FC<UpgradesShopProps> = ({
             margin: 0,
             display: 'flex',
             alignItems: 'center',
-            gap: '6px',
+            justifyContent: 'space-between',
             cursor: 'pointer',
             userSelect: 'none',
+            flex: 1,
+            paddingRight: '12px',
           }}
         >
+          <span>🏪 Wichita Upgrades</span>
           <span style={{ transition: 'transform 0.2s', display: 'inline-block', transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)' }}>▶</span>
-          🏪 Wichita Upgrades
         </div>
         {isExpanded && <button
           onClick={() => setShowPurchased(!showPurchased)}
@@ -101,7 +103,7 @@ export const UpgradesShop: React.FC<UpgradesShopProps> = ({
                 style={{
                   padding: '10px',
                   backgroundColor: showPurchased ? '#e5e7eb' : (canAfford ? 'white' : '#f3f4f6'),
-                  border: showPurchased ? '2px solid #10b981' : (canAfford ? '2px solid #3b82f6' : '1px solid #d1d5db'),
+                  border: showPurchased ? '2px solid #10b981' : (canAfford ? '2px solid #2563eb' : '1px solid #d1d5db'),
                   borderRadius: '6px',
                   cursor: showPurchased ? 'pointer' : (canAfford ? 'pointer' : 'not-allowed'),
                   opacity: canAfford || showPurchased ? 1 : 0.6,
@@ -167,7 +169,7 @@ export const UpgradesShop: React.FC<UpgradesShopProps> = ({
                               width: '14px',
                               height: '14px',
                               borderRadius: '50%',
-                              backgroundColor: '#3b82f6',
+                              backgroundColor: '#2563eb',
                               color: 'white',
                               fontSize: '10px',
                               fontWeight: 'bold',
@@ -181,13 +183,13 @@ export const UpgradesShop: React.FC<UpgradesShopProps> = ({
                             className="info-tooltip"
                             style={{
                               position: 'absolute',
-                              bottom: '100%',
-                              left: '50%',
-                              transform: 'translateX(-50%)',
-                              marginBottom: '8px',
+                              top: '50%',
+                              left: '100%',
+                              transform: 'translateY(-50%)',
+                              marginLeft: '8px',
                               padding: '12px',
                               backgroundColor: 'white',
-                              border: '2px solid #3b82f6',
+                              border: '2px solid #2563eb',
                               borderRadius: '8px',
                               boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
                               width: '300px',
@@ -195,28 +197,28 @@ export const UpgradesShop: React.FC<UpgradesShopProps> = ({
                               fontSize: '11px',
                               lineHeight: '1.5',
                               color: '#1f2937',
-                              zIndex: 1000,
+                              zIndex: 9999,
                               opacity: 0,
                               visibility: 'hidden',
                               transition: 'opacity 0.2s, visibility 0.2s',
                               pointerEvents: 'none',
                             }}
                           >
-                            <div style={{ fontWeight: 'bold', marginBottom: '6px', color: '#3b82f6', fontSize: '12px' }}>
+                            <div style={{ fontWeight: 'bold', marginBottom: '6px', color: '#2563eb', fontSize: '12px' }}>
                               About {upgrade.name}
                             </div>
                             {upgrade.detailedInfo}
                             <div
                               style={{
                                 position: 'absolute',
-                                top: '100%',
-                                left: '50%',
-                                transform: 'translateX(-50%)',
+                                top: '50%',
+                                right: '100%',
+                                transform: 'translateY(-50%)',
                                 width: 0,
                                 height: 0,
-                                borderLeft: '8px solid transparent',
-                                borderRight: '8px solid transparent',
-                                borderTop: '8px solid #3b82f6',
+                                borderTop: '8px solid transparent',
+                                borderBottom: '8px solid transparent',
+                                borderRight: '8px solid #2563eb',
                               }}
                             />
                           </div>
@@ -226,7 +228,7 @@ export const UpgradesShop: React.FC<UpgradesShopProps> = ({
                     <div style={{ fontSize: '10px', color: '#6b7280', marginBottom: '4px' }}>
                       {upgrade.description}
                     </div>
-                    <div style={{ fontSize: '11px', fontWeight: 'bold', color: '#3b82f6' }}>
+                    <div style={{ fontSize: '11px', fontWeight: 'bold', color: '#2563eb' }}>
                       {getEffectDescription(upgrade)}
                     </div>
                     {upgrade.wichitaFact && selectedUpgrade?.id === upgrade.id && (
@@ -263,8 +265,8 @@ export const UpgradesShop: React.FC<UpgradesShopProps> = ({
                         disabled={!canAfford}
                         style={{
                           padding: '4px 10px',
-                          backgroundColor: canAfford ? '#3b82f6' : '#9ca3af',
-                          color: 'white',
+                          backgroundColor: canAfford ? '#2563eb' : '#9ca3af',
+                          color: '#f5f1e3',
                           border: 'none',
                           borderRadius: '4px',
                           cursor: canAfford ? 'pointer' : 'not-allowed',

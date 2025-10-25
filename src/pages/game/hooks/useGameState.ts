@@ -3,6 +3,17 @@ import type { GameState, Upgrade, MoonbaseModule } from '../types';
 import upgradesData from '../data/upgrades.json';
 import modulesData from '../data/modules.json';
 
+const TUTORIAL_STORAGE_KEY = 'wichita-ttm-tutorial-complete';
+
+// Check if tutorial was completed in previous session
+const loadTutorialStatus = (): boolean => {
+  try {
+    return localStorage.getItem(TUTORIAL_STORAGE_KEY) === 'true';
+  } catch {
+    return false;
+  }
+};
+
 const INITIAL_STATE: GameState = {
   innovationCapital: 0,
   clickPower: 1,
@@ -19,7 +30,7 @@ const INITIAL_STATE: GameState = {
   gameStartTime: Date.now(),
   totalClicks: 0,
   isWon: false,
-  tutorialComplete: false,
+  tutorialComplete: loadTutorialStatus(),
 };
 
 export const useGameState = () => {
@@ -111,6 +122,11 @@ export const useGameState = () => {
   // Complete tutorial
   const completeTutorial = useCallback(() => {
     setGameState(prev => ({ ...prev, tutorialComplete: true }));
+    try {
+      localStorage.setItem(TUTORIAL_STORAGE_KEY, 'true');
+    } catch {
+      // Ignore localStorage errors (e.g., in private browsing mode)
+    }
   }, []);
 
   // Reset game
