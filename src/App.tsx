@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import type { IntakeData, CareerPlan, UserProgress, AgentType } from '@/types';
 import Header from './shared/components/Header';
+import LandingPage from './pages/reskill/features/landing/LandingPage';
 import ConversationalIntake from './pages/reskill/features/intake/ConversationalIntake';
 import PlanView from './pages/reskill/features/plan/PlanView';
 import ProgressDashboard from './pages/reskill/features/progress/ProgressDashboard';
@@ -296,13 +297,14 @@ function App() {
             <Loading message="Generating your personalized career plan..." />
           ) : (
             <Routes>
-              {/* Root redirect to ReSkill */}
+              {/* Root redirect to ReSkill Landing */}
               <Route path="/" element={<Navigate to="/reskill" replace />} />
 
               {/* Challenge 1: ReSkill KS */}
               <Route path="/reskill">
+                <Route index element={<LandingPage />} />
                 <Route
-                  index
+                  path="intake"
                   element={<ConversationalIntake onComplete={handleIntakeComplete} />}
                 />
                 <Route

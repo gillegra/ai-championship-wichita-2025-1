@@ -10,8 +10,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage }) => {
     <header className="app-header">
       <div className="header-content">
         <Link to="/" className="header-logo">
-          <span className="logo-icon">🎯</span>
-          <span className="logo-text">ReSkill KS</span>
+          <img src="/assets/reskill-logo.webp" alt="ReSkill KS" className="logo-image" />
         </Link>
 
         <nav className="header-nav">

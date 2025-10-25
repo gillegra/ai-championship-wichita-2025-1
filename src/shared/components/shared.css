@@ -35,6 +35,11 @@
   transform: scale(1.05);
 }
 
+.logo-image {
+  height: 50px;
+  width: auto;
+}
+
 .logo-icon {
   font-size: 2rem;
 }
