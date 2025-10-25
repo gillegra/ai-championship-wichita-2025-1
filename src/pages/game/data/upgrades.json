@@ -1,0 +1,146 @@
+[
+  {
+    "id": "keeper-of-plains",
+    "name": "Keeper of the Plains",
+    "description": "Iconic landmark inspiring innovation",
+    "cost": 100,
+    "effect": {
+      "type": "clickPower",
+      "value": 10
+    },
+    "wichitaFact": "44-foot steel sculpture overlooking Arkansas River confluence, symbolizing Wichita's Native American heritage",
+    "icon": "🗿"
+  },
+  {
+    "id": "spirit-aero",
+    "name": "Spirit AeroSystems",
+    "description": "World-class aerostructures manufacturer",
+    "cost": 500,
+    "effect": {
+      "type": "clickPower",
+      "value": 50
+    },
+    "wichitaFact": "World's largest first-tier aerostructures manufacturer, building fuselages for Boeing aircraft",
+    "icon": "✈️"
+  },
+  {
+    "id": "textron-aviation",
+    "name": "Textron Aviation",
+    "description": "General aviation leader (Cessna & Beechcraft)",
+    "cost": 750,
+    "effect": {
+      "type": "passiveIncome",
+      "value": 100
+    },
+    "wichitaFact": "Home of Cessna and Beechcraft, leaders in general aviation with over 90 years of history",
+    "icon": "🛩️"
+  },
+  {
+    "id": "wsu-innovation",
+    "name": "WSU Innovation Campus",
+    "description": "University-industry research partnership",
+    "cost": 1200,
+    "effect": {
+      "type": "passiveIncome",
+      "value": 150
+    },
+    "wichitaFact": "Collaborative hub connecting Wichita State University with aerospace industry for cutting-edge research",
+    "icon": "🎓"
+  },
+  {
+    "id": "mcconnell-afb",
+    "name": "McConnell Air Force Base",
+    "description": "Air refueling operations center",
+    "cost": 2000,
+    "effect": {
+      "type": "clickPower",
+      "value": 200
+    },
+    "wichitaFact": "Home to the 22nd Air Refueling Wing, supporting global military operations since 1951",
+    "icon": "🛫"
+  },
+  {
+    "id": "stearman-field",
+    "name": "Stearman Field Heritage",
+    "description": "WWII pilot training legacy",
+    "cost": 3500,
+    "effect": {
+      "type": "passiveIncome",
+      "value": 500
+    },
+    "wichitaFact": "Historic site where thousands of pilots learned to fly during WWII, part of Wichita's aviation heritage",
+    "icon": "🎖️"
+  },
+  {
+    "id": "netapp",
+    "name": "NetApp Tech Hub",
+    "description": "Global data infrastructure innovator",
+    "cost": 5000,
+    "effect": {
+      "type": "clickPower",
+      "value": 300
+    },
+    "wichitaFact": "Major technology company with significant Wichita presence, driving cloud data infrastructure innovation",
+    "icon": "💻"
+  },
+  {
+    "id": "koch-industries",
+    "name": "Koch Industries",
+    "description": "Innovation and manufacturing excellence",
+    "cost": 7500,
+    "effect": {
+      "type": "passiveIncome",
+      "value": 1000
+    },
+    "wichitaFact": "One of the world's largest privately held companies, headquartered in Wichita since 1927",
+    "icon": "🏭"
+  },
+  {
+    "id": "aviation-district",
+    "name": "Aviation Manufacturing District",
+    "description": "Aerospace supplier cluster",
+    "cost": 10000,
+    "effect": {
+      "type": "clickMultiplier",
+      "value": 2
+    },
+    "wichitaFact": "Dense cluster of aerospace suppliers and OEMs creating a world-class manufacturing ecosystem",
+    "icon": "🏗️"
+  },
+  {
+    "id": "wichita-workforce",
+    "name": "Wichita Workforce",
+    "description": "Skilled aerospace talent pool",
+    "cost": 15000,
+    "effect": {
+      "type": "passiveMultiplier",
+      "value": 2
+    },
+    "wichitaFact": "Over 30,000 skilled aerospace workers making Wichita the 'Air Capital of the World'",
+    "icon": "👷"
+  },
+  {
+    "id": "air-capital-legacy",
+    "name": "Air Capital Legacy",
+    "description": "Century of aviation leadership",
+    "cost": 25000,
+    "effect": {
+      "type": "clickMultiplier",
+      "value": 3
+    },
+    "wichitaFact": "100+ years of aviation innovation - Wichita produces more aircraft than any other city on Earth",
+    "icon": "🌟"
+  },
+  {
+    "id": "moonshot-mentality",
+    "name": "Moonshot Mentality",
+    "description": "Bold innovation culture",
+    "cost": 50000,
+    "effect": {
+      "type": "passiveMultiplier",
+      "value": 3
+    },
+    "wichitaFact": "Wichita's can-do spirit and culture of bold innovation - from aircraft to moonbases",
+    "icon": "🚀"
+  }
+]

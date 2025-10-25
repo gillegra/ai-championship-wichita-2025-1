@@ -1,0 +1,37 @@
+[
+  {
+    "id": "habitat",
+    "name": "Habitat Module",
+    "description": "Living quarters for lunar crew",
+    "requiredIC": 5000,
+    "icon": "🏠"
+  },
+  {
+    "id": "power",
+    "name": "Power Module",
+    "description": "Solar arrays and energy systems",
+    "requiredIC": 8000,
+    "icon": "⚡"
+  },
+  {
+    "id": "research",
+    "name": "Research Lab",
+    "description": "Scientific experiments and analysis",
+    "requiredIC": 12000,
+    "icon": "🔬"
+  },
+  {
+    "id": "manufacturing",
+    "name": "Manufacturing Bay",
+    "description": "Process lunar resources",
+    "requiredIC": 18000,
+    "icon": "⚙️"
+  },
+  {
+    "id": "communications",
+    "name": "Communications Hub",
+    "description": "Maintain Earth-Moon link",
+    "requiredIC": 25000,
+    "icon": "📡"
+  }
+]

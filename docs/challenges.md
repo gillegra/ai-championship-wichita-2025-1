@@ -34,20 +34,32 @@ ReSkill KS is organized into 4 separate challenges, each accessible via unique r
 
 ---
 
-## Challenge 2: "Game" (PLACEHOLDER)
+## Challenge 2: "Wichita to the Moon" (COMPLETE)
 
 **Route**: `/game`
 
-**Status**: 🚧 NOT STARTED
+**Status**: ✅ COMPLETE (MVP Implemented)
 
-**Purpose**: TBD
+**Purpose**: Resource management clicker game celebrating Wichita's aerospace heritage
 
-**Features**: TBD
+**Features**:
+- Mouse-only clicker mechanic to generate Innovation Capital (IC)
+- 12 Wichita-themed upgrades (Spirit AeroSystems, Textron Aviation, WSU Innovation Campus, etc.)
+- 5 moonbase modules to construct (Habitat, Power, Research, Manufacturing, Communications)
+- Passive income system with multipliers
+- Tutorial overlay for first-time players
+- Win screen with stats and educational Wichita facts
+- 10-15 minute playtime to completion
 
-**Notes**:
-- Placeholder name only
-- Details to be determined
-- Route reserved for second challenge
+**Key Components**:
+- `src/pages/game/GameChallenge.tsx` - Main game entry point
+- `src/pages/game/hooks/useGameState.ts` - Central game state management
+- `src/pages/game/features/clicker/` - Click mechanic and IC generation
+- `src/pages/game/features/moonbase/` - Module construction interface
+- `src/pages/game/features/upgrades/` - Upgrade shop
+- `src/pages/game/features/tutorial/` - First-time player guidance
+
+**Technical Documentation**: See `/docs/game-technical-walkthrough.md` for detailed implementation guide
 
 ---
 
