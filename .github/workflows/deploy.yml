@@ -1,0 +1,82 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      project:
+        description: 'Specific project to deploy (leave empty for all changed projects)'
+        required: false
+        type: string
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      projects: ${{ steps.detect.outputs.projects }}
+      skip_ci: ${{ steps.check-skip.outputs.skip_ci }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Need 2 commits to compare changes
+
+      - name: Check for [skip-ci] or [no-cicd] in commit message
+        id: check-skip
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          if [[ "$COMMIT_MSG" =~ \[skip-ci\]|\[no-cicd\]|\[skip\ ci\]|\[ci\ skip\] ]]; then
+            echo "skip_ci=true" >> $GITHUB_OUTPUT
+            echo "⏭️ CI/CD skipped due to commit message flag"
+          else
+            echo "skip_ci=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Detect changed projects
+        id: detect
+        if: steps.check-skip.outputs.skip_ci == 'false'
+        run: |
+          chmod +x ./.github/scripts/detect-projects.sh
+          ./.github/scripts/detect-projects.sh
+
+  build-and-deploy:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.skip_ci == 'false'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: ${{ fromJson(needs.detect-changes.outputs.projects) }}
+      fail-fast: false  # Continue deploying other projects even if one fails
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies for ${{ matrix.project }}
+        working-directory: ${{ matrix.project }}
+        run: bun install
+
+      - name: Build ${{ matrix.project }}
+        working-directory: ${{ matrix.project }}
+        run: bun run build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION || 'us-east-1' }}
+
+      - name: Deploy ${{ matrix.project }} to S3 + CloudFront
+        env:
+          PROJECT_NAME: ${{ matrix.project }}
+        run: |
+          chmod +x ./.github/scripts/deploy-to-aws.sh
+          ./.github/scripts/deploy-to-aws.sh "$PROJECT_NAME"
