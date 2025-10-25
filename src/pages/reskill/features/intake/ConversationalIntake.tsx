@@ -162,30 +162,14 @@ const ConversationalIntake: React.FC<ConversationalIntakeProps> = ({ onComplete 
     }));
   };
 
-  // Type guard to check if intake data is complete
+  // Type guard to check if intake data is complete (streamlined for demo)
   const isIntakeDataComplete = (data: Partial<IntakeData>): data is IntakeData => {
     return !!(
-      data.firstName &&
-      data.lastName &&
-      data.email &&
+      data.firstName && // Full name
       data.zipCode &&
       data.currentOccupation &&
-      data.currentIndustry &&
-      data.yearsOfExperience !== undefined &&
-      data.educationLevel &&
-      data.desiredField &&
       data.desiredOccupation &&
-      data.careerChangeReason &&
-      data.timelineExpectation &&
-      data.geographicConstraints &&
-      data.timeAvailability &&
-      data.financialConstraints &&
-      data.hasTransportation !== undefined &&
-      data.hasInternetAccess !== undefined &&
-      data.currentSkills &&
-      data.interests &&
-      data.strengthAreas &&
-      data.learningPreferences
+      data.timeAvailability
     );
   };
 
