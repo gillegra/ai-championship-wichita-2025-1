@@ -106,16 +106,30 @@ echo "🌐 Website URL: $WEBSITE_URL"
 echo ""
 echo "🔍 Checking for existing CloudFront distribution..."
 
-DISTRIBUTION_ID=$(aws cloudfront list-distributions \
-  --query "DistributionList.Items[?Origins.Items[?DomainName=='${BUCKET_NAME}.s3.${AWS_REGION}.amazonaws.com']].Id | [0]" \
-  --output text 2>/dev/null || echo "")
+# Check if distribution ID is provided via environment variable
+if [[ -n "$CLOUDFRONT_DISTRIBUTION_ID" ]]; then
+  DISTRIBUTION_ID="$CLOUDFRONT_DISTRIBUTION_ID"
+  echo "✅ Using CloudFront distribution from environment: $DISTRIBUTION_ID"
+else
+  # Try to find distribution by S3 bucket origin
+  DISTRIBUTION_ID=$(aws cloudfront list-distributions \
+    --query "DistributionList.Items[?Origins.Items[?DomainName=='${BUCKET_NAME}.s3.${AWS_REGION}.amazonaws.com']].Id | [0]" \
+    --output text 2>/dev/null || echo "")
+
+  # If not found, try S3 website endpoint
+  if [[ -z "$DISTRIBUTION_ID" || "$DISTRIBUTION_ID" == "None" ]]; then
+    DISTRIBUTION_ID=$(aws cloudfront list-distributions \
+      --query "DistributionList.Items[?Origins.Items[?DomainName=='${BUCKET_NAME}.s3-website-${AWS_REGION}.amazonaws.com' || DomainName=='${BUCKET_NAME}.s3-website.${AWS_REGION}.amazonaws.com']].Id | [0]" \
+      --output text 2>/dev/null || echo "")
+  fi
+fi
 
 if [[ -z "$DISTRIBUTION_ID" || "$DISTRIBUTION_ID" == "None" ]]; then
   echo "ℹ️  No CloudFront distribution found"
   echo "💡 To add CloudFront CDN:"
   echo "   1. Go to AWS Console > CloudFront"
   echo "   2. Create distribution with origin: $BUCKET_NAME.s3-website-${AWS_REGION}.amazonaws.com"
-  echo "   3. Add distribution ID to GitHub Secrets as CLOUDFRONT_DISTRIBUTION_ID_${SANITIZED_NAME^^}"
+  echo "   3. Add distribution ID to GitHub Secrets as CLOUDFRONT_DISTRIBUTION_ID"
 else
   echo "☁️  Found CloudFront distribution: $DISTRIBUTION_ID"
   echo "🔄 Invalidating CloudFront cache..."

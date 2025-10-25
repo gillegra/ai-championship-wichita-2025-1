@@ -48,6 +48,8 @@ jobs:
 
       - name: Deploy to S3 + CloudFront
         if: steps.check-skip.outputs.skip_ci == 'false'
+        env:
+          CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
         run: |
           chmod +x ./.github/scripts/deploy-to-aws.sh
           ./.github/scripts/deploy-to-aws.sh "reskill-ks"
