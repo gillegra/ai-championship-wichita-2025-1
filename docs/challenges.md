@@ -8,7 +8,7 @@ ReSkill KS is organized into 4 separate challenges, each accessible via unique r
 
 ## Challenge 1: "Reskill" (PRIMARY)
 
-**Route**: `/reskill`
+**Route**: `/reskill/*`
 
 **Status**: ✅ COMPLETE (Core MVP implemented)
 
@@ -21,16 +21,16 @@ ReSkill KS is organized into 4 separate challenges, each accessible via unique r
 - 6 AI agent personas (Riley, Taylor, Alex, Jordan, Sam, Casey)
 
 **Key Components**:
-- `src/features/intake/` - Multi-step intake form
-- `src/features/plan/` - Career plan display
-- `src/features/progress/` - Progress tracking
-- `src/features/agents/` - AI agent chat
+- `src/pages/reskill/features/intake/` - Multi-step intake form
+- `src/pages/reskill/features/plan/` - Career plan display
+- `src/pages/reskill/features/progress/` - Progress tracking
+- `src/pages/reskill/features/agents/` - AI agent chat
 
 **Current Routes**:
-- `/` - Intake portal
-- `/plan` - View generated career plan
-- `/progress` - Track milestone progress
-- `/agents` - Chat with AI assistants
+- `/reskill` - Intake portal (index)
+- `/reskill/plan` - View generated career plan
+- `/reskill/progress` - Track milestone progress
+- `/reskill/agents` - Chat with AI assistants
 
 ---
 
@@ -53,25 +53,35 @@ ReSkill KS is organized into 4 separate challenges, each accessible via unique r
 
 ## Challenge 3: TBD
 
-**Route**: TBD
+**Route**: `/c3`
 
 **Status**: 🚧 NOT STARTED
 
 **Purpose**: TBD
 
 **Features**: TBD
+
+**Notes**:
+- Placeholder component created and wired to router
+- Details to be determined when requirements arrive
+- Route reserved for third challenge
 
 ---
 
 ## Challenge 4: TBD
 
-**Route**: TBD
+**Route**: `/c4`
 
 **Status**: 🚧 NOT STARTED
 
 **Purpose**: TBD
 
 **Features**: TBD
+
+**Notes**:
+- Placeholder component created and wired to router
+- Details to be determined when requirements arrive
+- Route reserved for fourth challenge
 
 ---
 
@@ -79,36 +89,44 @@ ReSkill KS is organized into 4 separate challenges, each accessible via unique r
 
 ### Routing Strategy
 
-The application will use nested routing structure:
+The application uses nested routing structure with each challenge at its own top-level route:
 
 ```
-/reskill/*        - Challenge 1 routes
-  /reskill/       - Intake portal
-  /reskill/plan   - Career plan
-  /reskill/progress - Progress tracking
-  /reskill/agents - AI agents
+/                 - Root redirect to /reskill
 
-/game/*           - Challenge 2 routes (TBD)
+/reskill/*        - Challenge 1: ReSkill KS
+  /reskill/       - Intake portal (index)
+  /reskill/plan   - Career plan view
+  /reskill/progress - Progress tracking dashboard
+  /reskill/agents - AI agents chat
 
-/challenge3/*     - Challenge 3 routes (TBD)
+/game             - Challenge 2: Game (TBD)
 
-/challenge4/*     - Challenge 4 routes (TBD)
+/c3               - Challenge 3: TBD
+
+/c4               - Challenge 4: TBD
 ```
 
 ### Development Guidelines
 
-1. **Isolation**: Each challenge should be self-contained in its own feature directory
-2. **Shared Resources**: Common UI components, types, and utilities go in `/src/shared/`
-3. **Routing**: All challenge routes defined in main App.tsx router
-4. **Navigation**: Global header should provide navigation between challenges
+1. **Directory Structure**: Each challenge lives in `src/pages/[challenge-name]/`
+   - For example: `src/pages/reskill/`, `src/pages/game/`, `src/pages/c3/`, `src/pages/c4/`
+2. **Feature Organization**: Within each challenge, organize features by domain
+   - Example: `src/pages/reskill/features/intake/`, `src/pages/reskill/features/plan/`, etc.
+3. **Shared Resources**: Common UI components, types, and utilities go in `/src/shared/`
+4. **Types**: Each challenge can have its own types at `src/pages/[challenge-name]/types/`
+5. **Routing**: All challenge routes defined in main `src/App.tsx` router
+6. **Navigation**: Global header should provide navigation between challenges
 
 ### When Adding New Challenges
 
-1. Update this document with challenge details
-2. Create feature directory: `src/features/[challenge-name]/`
-3. Add routes in App.tsx
-4. Update CLAUDE.md Project Context if needed
-5. Update main navigation in Header component
+1. Create challenge directory: `src/pages/[challenge-name]/`
+2. Create placeholder component at `src/pages/[challenge-name]/Challenge.tsx` (or appropriate name)
+3. Add route in `src/App.tsx` router
+4. Update this document with challenge details and route
+5. Update CLAUDE.md Project Context if introducing new patterns
+6. Update main navigation in Header component
+7. Create feature subdirectories as features are developed: `src/pages/[challenge-name]/features/[feature]/`
 
 ---
 
@@ -116,4 +134,4 @@ The application will use nested routing structure:
 
 **IMPORTANT**: Team members are currently working on updates. Always pull latest changes before making route or navigation modifications.
 
-**Last Updated**: 2025-10-25
+**Last Updated**: 2025-10-25 - Routes finalized, placeholder components created, ready for Challenge 3 and 4 implementation

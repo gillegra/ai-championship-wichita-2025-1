@@ -139,11 +139,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **When**: Creating new components and organizing file structure
 **Why**: Feature-based organization scales better and keeps related code together
 **Pattern**:
-- `/src/features/intake/` - Intake portal (Challenge 1: Reskill)
-- `/src/features/plan/` - Plan generation and display (Challenge 1: Reskill)
-- `/src/features/progress/` - Progress tracking dashboard (Challenge 1: Reskill)
-- `/src/features/agents/` - Agent persona implementations (Challenge 1: Reskill)
-- `/src/features/game/` - Challenge 2 components (when implemented)
+- `/src/reskill/features/intake/` - Intake portal (Challenge 1: Reskill)
+- `/src/reskill/features/plan/` - Plan generation and display (Challenge 1: Reskill)
+- `/src/reskill/features/progress/` - Progress tracking dashboard (Challenge 1: Reskill)
+- `/src/reskill/features/agents/` - Agent persona implementations (Challenge 1: Reskill)
+- `/src/game/features/*` - Challenge 2 components (when implemented)
 - `/src/shared/` - Truly shared components across all challenges (Button, Header, etc.)
 
 **Multi-Challenge Pattern**:

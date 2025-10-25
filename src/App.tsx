@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import type { IntakeData, CareerPlan, UserProgress, AgentType } from './types';
+import type { IntakeData, CareerPlan, UserProgress, AgentType } from './pages/reskill/types';
 import Header from './shared/components/Header';
-import IntakePortal from './features/intake/IntakePortal';
-import PlanView from './features/plan/PlanView';
-import ProgressDashboard from './features/progress/ProgressDashboard';
-import AgentChat from './features/agents/AgentChat';
-import { AVAILABLE_AGENTS } from './features/agents/agentDefinitions';
+import IntakePortal from './pages/reskill/features/intake/IntakePortal';
+import PlanView from './pages/reskill/features/plan/PlanView';
+import ProgressDashboard from './pages/reskill/features/progress/ProgressDashboard';
+import AgentChat from './pages/reskill/features/agents/AgentChat';
+import { AVAILABLE_AGENTS } from './pages/reskill/features/agents/agentDefinitions';
 import Loading from './shared/components/Loading';
+import GameChallenge from './pages/game/GameChallenge';
+import Challenge3 from './pages/c3/Challenge3';
+import Challenge4 from './pages/c4/Challenge4';
 import './App.css';
 
 // Mock data generation functions (to be replaced with real API calls)
@@ -202,7 +205,7 @@ function App() {
 
   const handleStartPlan = () => {
     // Navigate to progress dashboard
-    window.location.href = '/progress';
+    window.location.href = '/reskill/progress';
   };
 
   const handleUpdateProgress = (
@@ -293,43 +296,58 @@ function App() {
             <Loading message="Generating your personalized career plan..." />
           ) : (
             <Routes>
-              <Route
-                path="/"
-                element={<IntakePortal onComplete={handleIntakeComplete} />}
-              />
-              <Route
-                path="/plan"
-                element={
-                  careerPlan ? (
-                    <PlanView plan={careerPlan} onStartPlan={handleStartPlan} />
-                  ) : (
-                    <Navigate to="/" replace />
-                  )
-                }
-              />
-              <Route
-                path="/progress"
-                element={
-                  careerPlan && userProgress ? (
-                    <ProgressDashboard
-                      plan={careerPlan}
-                      userProgress={userProgress}
-                      onUpdateProgress={handleUpdateProgress}
+              {/* Root redirect to ReSkill */}
+              <Route path="/" element={<Navigate to="/reskill" replace />} />
+
+              {/* Challenge 1: ReSkill KS */}
+              <Route path="/reskill">
+                <Route
+                  index
+                  element={<IntakePortal onComplete={handleIntakeComplete} />}
+                />
+                <Route
+                  path="plan"
+                  element={
+                    careerPlan ? (
+                      <PlanView plan={careerPlan} onStartPlan={handleStartPlan} />
+                    ) : (
+                      <Navigate to="/reskill" replace />
+                    )
+                  }
+                />
+                <Route
+                  path="progress"
+                  element={
+                    careerPlan && userProgress ? (
+                      <ProgressDashboard
+                        plan={careerPlan}
+                        userProgress={userProgress}
+                        onUpdateProgress={handleUpdateProgress}
+                      />
+                    ) : (
+                      <Navigate to="/reskill" replace />
+                    )
+                  }
+                />
+                <Route
+                  path="agents"
+                  element={
+                    <AgentChat
+                      availableAgents={AVAILABLE_AGENTS}
+                      onSendMessage={handleSendAgentMessage}
                     />
-                  ) : (
-                    <Navigate to="/" replace />
-                  )
-                }
-              />
-              <Route
-                path="/agents"
-                element={
-                  <AgentChat
-                    availableAgents={AVAILABLE_AGENTS}
-                    onSendMessage={handleSendAgentMessage}
-                  />
-                }
-              />
+                  }
+                />
+              </Route>
+
+              {/* Challenge 2: Game */}
+              <Route path="/game" element={<GameChallenge />} />
+
+              {/* Challenge 3: TBD */}
+              <Route path="/c3" element={<Challenge3 />} />
+
+              {/* Challenge 4: TBD */}
+              <Route path="/c4" element={<Challenge4 />} />
             </Routes>
           )}
         </main>
