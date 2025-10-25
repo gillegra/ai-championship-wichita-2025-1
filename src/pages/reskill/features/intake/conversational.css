@@ -1,9 +1,10 @@
 /* Conversational Intake Styles */
 
 .conversational-intake {
-  max-width: 900px;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0.5rem;
+  padding-top: 4rem; /* Space for fixed progress bar */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -12,33 +13,37 @@
 /* Progress Bar */
 .progress-bar-container {
   background: white;
-  padding: 1rem;
-  border-radius: 12px;
+  padding: 0.5rem 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem;
-  position: sticky;
-  top: 1rem;
-  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .progress-bar {
-  height: 8px;
+  height: 4px;
   background: #ecf0f1;
-  border-radius: 4px;
+  border-radius: 2px;
   overflow: hidden;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
   transition: width 0.5s ease;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 .progress-text {
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   color: #7f8c8d;
   font-weight: 600;
 }
@@ -46,8 +51,8 @@
 /* Riley Chat Container */
 .riley-chat {
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -57,22 +62,22 @@
 .chat-messages {
   flex: 1;
   overflow-y: auto;
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.75rem;
 }
 
 /* Riley Intro Section */
 .riley-intro {
   text-align: center;
-  padding: 2rem 1rem;
-  margin-bottom: 1rem;
+  padding: 1rem 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .riley-avatar-large {
-  font-size: 4rem;
-  margin-bottom: 1rem;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
   animation: wave 2s ease-in-out infinite;
 }
 
@@ -83,14 +88,14 @@
 }
 
 .riley-name {
-  font-size: 1.5rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: #2c3e50;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.125rem;
 }
 
 .riley-title {
-  font-size: 0.95rem;
+  font-size: 0.7rem;
   color: #7f8c8d;
 }
 
@@ -98,14 +103,14 @@
 .message {
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
+  gap: 0.4rem;
   animation: fadeIn 0.3s ease-out;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(5px);
   }
   to {
     opacity: 1;
@@ -125,26 +130,26 @@
 }
 
 .message-avatar {
-  font-size: 2rem;
+  font-size: 1rem;
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .message-bubble {
-  padding: 1rem 1.25rem;
-  border-radius: 16px;
-  line-height: 1.5;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  line-height: 1.4;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .message-riley .message-bubble {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  border-bottom-left-radius: 4px;
+  border-bottom-left-radius: 2px;
 }
 
 .message-riley .message-bubble.persona-skills-training {
@@ -158,26 +163,26 @@
 .message-user .message-bubble {
   background: #f8f9fa;
   color: #2c3e50;
-  border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 2px;
   border: 1px solid #e0e0e0;
 }
 
 .message-content {
-  font-size: 1rem;
+  font-size: 0.85rem;
 }
 
 /* Typing Indicator */
 .typing-indicator {
   display: flex;
-  gap: 0.4rem;
-  padding: 1rem 1.5rem !important;
+  gap: 0.2rem;
+  padding: 0.5rem 0.75rem !important;
   align-items: center;
   justify-content: center;
 }
 
 .typing-indicator span {
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 50%;
   animation: typing 1.4s infinite;
@@ -197,7 +202,7 @@
     opacity: 0.6;
   }
   30% {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
     opacity: 1;
   }
 }
@@ -213,7 +218,7 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -224,22 +229,22 @@
 .input-container {
   width: 100%;
   background: #f8f9fa;
-  border-radius: 12px;
-  padding: 1.5rem;
-  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 0.75rem;
+  border: 1px solid #e0e0e0;
 }
 
 /* Conversational Input Styles */
 .conversational-input {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .input-field {
   width: 100%;
-  padding: 0.875rem 1rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 1rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 0.85rem;
   font-family: inherit;
   transition: all 0.3s;
 }
@@ -247,12 +252,12 @@
 .input-field:focus {
   outline: none;
   border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
 }
 
 .textarea-field {
   resize: vertical;
-  min-height: 100px;
+  min-height: 60px;
 }
 
 .select-field {
@@ -264,18 +269,18 @@
 .checkbox-group {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.4rem;
 }
 
 .radio-option,
 .checkbox-option {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.875rem 1rem;
+  gap: 0.5rem;
+  padding: 0.5rem 0.6rem;
   background: white;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s;
 }
@@ -288,8 +293,8 @@
 
 .radio-option input,
 .checkbox-option input {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   cursor: pointer;
 }
 
@@ -297,7 +302,7 @@
 .checkbox-label {
   flex: 1;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: #2c3e50;
 }
 
@@ -305,25 +310,25 @@
 .tags-input {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .tags-display {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  min-height: 40px;
+  gap: 0.25rem;
+  min-height: 24px;
 }
 
 .tag {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
+  gap: 0.3rem;
+  padding: 0.3rem 0.5rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
   animation: popIn 0.2s ease-out;
 }
 
@@ -342,7 +347,7 @@
   background: none;
   border: none;
   color: white;
-  font-size: 1.3rem;
+  font-size: 1rem;
   cursor: pointer;
   padding: 0;
   line-height: 1;
@@ -355,7 +360,7 @@
 
 .tag-input-wrapper {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.3rem;
 }
 
 .tag-input-wrapper .input-field {
@@ -363,11 +368,12 @@
 }
 
 .btn-add-tag {
-  padding: 0.875rem 1.5rem;
+  padding: 0.4rem 0.8rem;
   background: #667eea;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
@@ -376,7 +382,7 @@
 
 .btn-add-tag:hover:not(:disabled) {
   background: #5568d3;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .btn-add-tag:disabled {
@@ -386,29 +392,29 @@
 
 .input-hint {
   display: block;
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   color: #7f8c8d;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
 }
 
 /* Submit Button */
 .btn-submit {
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 0.6rem 1rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 1.05rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
 }
 
 .btn-submit:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(102, 126, 234, 0.4);
 }
 
 .btn-submit:disabled {
@@ -419,20 +425,21 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .conversational-intake {
-    padding: 0.5rem;
+    padding: 0.25rem;
+    padding-top: 4rem;
   }
 
   .chat-messages {
-    padding: 1rem;
-    gap: 1rem;
+    padding: 0.5rem;
+    gap: 0.5rem;
   }
 
   .riley-intro {
-    padding: 1rem 0.5rem;
+    padding: 0.5rem 0.25rem;
   }
 
   .riley-avatar-large {
-    font-size: 3rem;
+    font-size: 1.5rem;
   }
 
   .message-riley,
@@ -441,15 +448,11 @@
   }
 
   .message-bubble {
-    padding: 0.875rem 1rem;
-    font-size: 0.95rem;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
   }
 
   .input-container {
-    padding: 1rem;
-  }
-
-  .progress-bar-container {
-    margin-bottom: 1rem;
+    padding: 0.5rem;
   }
 }
