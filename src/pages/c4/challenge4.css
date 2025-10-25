@@ -1,0 +1,237 @@
+.challenge4-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.challenge4-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #2c5282;
+}
+
+.challenge4-header h1 {
+  color: #1a365d;
+  margin: 0;
+  font-size: 2rem;
+}
+
+.challenge4-badge {
+  background-color: #48bb78;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+.solution-section {
+  margin-bottom: 3rem;
+}
+
+.solution-section h2 {
+  color: #2c5282;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.answer-box {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.answer-text {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.answer-attribution {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  margin: 0;
+  font-style: italic;
+}
+
+.step {
+  background-color: #f7fafc;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+  border-left: 4px solid #4299e1;
+}
+
+.step h3 {
+  color: #2d3748;
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.step p {
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.step ul {
+  color: #4a5568;
+  line-height: 1.8;
+  margin-top: 0.5rem;
+}
+
+.step ul li {
+  margin-bottom: 0.5rem;
+}
+
+.code-block {
+  background-color: #2d3748;
+  color: #a0aec0;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 1rem 0;
+}
+
+.step code,
+.final-message code {
+  background-color: #edf2f7;
+  color: #c53030;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.875rem;
+}
+
+.final-message {
+  background-color: #edf2f7;
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.final-message code {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #2d3748;
+}
+
+.card-table-container {
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.card-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.card-table thead {
+  background-color: #4299e1;
+  color: white;
+}
+
+.card-table th {
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #4a5568;
+}
+
+.card-table tbody tr:hover {
+  background-color: #f7fafc;
+}
+
+.card-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.char-cell {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  color: #2d3748;
+  text-align: center;
+}
+
+.file-cell {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+.solution-section.stats ul {
+  background-color: #f7fafc;
+  padding: 1.5rem 2rem;
+  border-radius: 6px;
+  list-style-type: none;
+  margin: 0;
+}
+
+.solution-section.stats ul li {
+  padding: 0.5rem 0;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.solution-section.stats ul li strong {
+  color: #2d3748;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .challenge4-container {
+    padding: 1rem;
+  }
+
+  .challenge4-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .challenge4-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .answer-text {
+    font-size: 1.5rem;
+  }
+
+  .card-table {
+    font-size: 0.875rem;
+  }
+
+  .card-table th,
+  .card-table td {
+    padding: 0.5rem;
+  }
+}
