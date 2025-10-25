@@ -1,42 +1,67 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './shared.css';
 
-interface HeaderProps {
-  currentPage?: string;
-}
+const Header: React.FC = () => {
+  const location = useLocation();
 
-const Header: React.FC<HeaderProps> = ({ currentPage }) => {
+  // Determine which challenge route is active based on current path
+  const isActive = (path: string) => {
+    if (path === '/reskill') {
+      return location.pathname === '/' || location.pathname.startsWith('/reskill');
+    }
+    return location.pathname.startsWith(path);
+  };
+
+  // Determine which logo to show based on current route
+  const getLogoConfig = () => {
+    if (location.pathname.startsWith('/game')) {
+      return {
+        src: '/wichita-ttm-logo.webp',
+        alt: 'Wichita to the Moon',
+        linkTo: '/game'
+      };
+    }
+    // Default to ReSkill logo for home and reskill routes
+    return {
+      src: '/assets/reskill-logo.webp',
+      alt: 'ReSkill KS',
+      linkTo: '/'
+    };
+  };
+
+  const logoConfig = getLogoConfig();
+
   return (
     <header className="app-header">
       <div className="header-content">
-        <Link to="/" className="header-logo">
-          <img src="/assets/reskill-logo.webp" alt="ReSkill KS" className="logo-image" />
+        <Link to={logoConfig.linkTo} className="header-logo">
+          <img src={logoConfig.src} alt={logoConfig.alt} className="logo-image" />
         </Link>
 
         <nav className="header-nav">
           <Link
-            to="/"
-            className={`nav-link ${currentPage === 'intake' ? 'active' : ''}`}
+            to="/reskill"
+            className={`nav-link ${isActive('/reskill') ? 'active' : ''}`}
           >
-            Get Started
+            Reskill
           </Link>
           <Link
-            to="/plan"
-            className={`nav-link ${currentPage === 'plan' ? 'active' : ''}`}
+            to="/game"
+            className={`nav-link ${isActive('/game') ? 'active' : ''}`}
           >
-            My Plan
+            Wichita to the Moon
           </Link>
           <Link
-            to="/progress"
-            className={`nav-link ${currentPage === 'progress' ? 'active' : ''}`}
+            to="/c3"
+            className={`nav-link ${isActive('/c3') ? 'active' : ''}`}
           >
-            Progress
+            Challenge 3
           </Link>
           <Link
-            to="/agents"
-            className={`nav-link ${currentPage === 'agents' ? 'active' : ''}`}
+            to="/c4"
+            className={`nav-link ${isActive('/c4') ? 'active' : ''}`}
           >
-            AI Assistants
+            Challenge 4
           </Link>
         </nav>
       </div>

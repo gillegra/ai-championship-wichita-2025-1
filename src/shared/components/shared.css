@@ -38,6 +38,7 @@
 .logo-image {
   height: 37.5px;
   width: auto;
+  border-radius: 6px;
 }
 
 .logo-icon {
