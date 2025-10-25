@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ICT One‑Prompt — Wichita Tech Scene</title>
+  <meta name="description" content="A one‑prompt, under‑25‑words demo that showcases Wichita’s tech scene." />
+  <style>
+    :root{
+      --bg: #0b1020;
+      --fg: #e9eefc;
+      --muted: #b8c2e0;
+      --accent: #4f46e5;
+      --accent-2: #06b6d4;
+      --success: #10b981;
+      --warn: #f59e0b;
+      --error: #ef4444;
+      --card: rgba(255,255,255,0.065);
+      --stroke: rgba(255,255,255,0.08);
+      --shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
+      --radius: 16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--fg);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(79,70,229,.35), transparent 60%),
+        radial-gradient(1000px 500px at 120% 10%, rgba(6,182,212,.25), transparent 55%),
+        linear-gradient(180deg, #0b1020 0%, #0b142a 60%, #0a152e 100%);
+      display:flex; flex-direction:column;
+      min-height:100vh;
+    }
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:18px 22px;
+      border-bottom:1px solid var(--stroke);
+      backdrop-filter: blur(8px);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
+      position:sticky; top:0; z-index:10;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.1px;
+    }
+    .brand-badge{
+      width:36px; height:36px; border-radius:10px;
+      background: conic-gradient(from 0.25turn, var(--accent), var(--accent-2), #22d3ee, var(--accent));
+      position:relative; box-shadow:var(--shadow); border:1px solid var(--stroke);
+    }
+    .brand-badge::after{
+      content:"ICT"; position:absolute; inset:0; display:grid; place-items:center;
+      font-size:.8rem; font-weight:800; color:white; text-shadow:0 1px 2px rgba(0,0,0,.4);
+    }
+    .cta{
+      font-size:.9rem; color:var(--muted);
+    }
+    main{width:100%; max-width:1100px; margin:0 auto; padding:28px 20px 80px; flex:1;}
+    .hero{
+      display:grid; grid-template-columns:1.1fr 1fr; gap:22px; align-items:stretch;
+    }
+    @media (max-width: 940px){
+      .hero{grid-template-columns:1fr;}
+    }
+    .card{
+      background:var(--card); border:1px solid var(--stroke);
+      border-radius:var(--radius); box-shadow:var(--shadow);
+    }
+    .hero-copy{ padding:28px; }
+    h1{ margin:0 0 8px; font-size: clamp(28px, 5vw, 48px); line-height:1.05; }
+    .sub{ color:var(--muted); font-size: clamp(14px, 1.7vw, 18px); }
+    .stat-row{ display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; }
+    .stat{ padding:10px 12px; border:1px dashed var(--stroke); border-radius:12px; background: rgba(255,255,255,.04); font-size:.9rem; }
+    .prompt{
+      padding:22px; display:flex; flex-direction:column; gap:12px; position:relative;
+    }
+    .input-wrap{
+      display:flex; gap:10px; align-items:stretch;
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--stroke); border-radius:14px; padding:10px;
+    }
+    textarea{
+      flex:1; resize:none; background:transparent; border:none; outline:none; color:var(--fg);
+      font: inherit; min-height:64px;
+    }
+    button.primary{
+      border:none; border-radius:12px; padding:14px 18px; cursor:pointer; color:white; font-weight:700;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: var(--shadow);
+    }
+    button.primary:disabled{ opacity:.5; cursor:not-allowed; }
+    .meter{ font-size:.85rem; color:var(--muted); display:flex; align-items:center; gap:10px; justify-content:space-between; }
+    .bar{ height:6px; background:rgba(255,255,255,.1); border-radius:999px; overflow:hidden; }
+    .bar>i{ display:block; height:100%; width:0%; background:linear-gradient(90deg, var(--accent), var(--accent-2)); transition:width .2s ease; }
+    .chips{ display:flex; gap:8px; flex-wrap:wrap; }
+    .chip{ padding:8px 10px; border-radius:999px; border:1px solid var(--stroke); background:rgba(255,255,255,.06); cursor:pointer; font-size:.85rem; }
+    .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr;} }
+    .result{ padding:18px; }
+    .result h3{ margin:0 0 6px; font-size:1.1rem; }
+    .result p{ margin:6px 0 10px; color:var(--muted); }
+    .list{ display:flex; flex-direction:column; gap:8px; }
+    .list a{ display:block; text-decoration:none; color:inherit; border:1px solid var(--stroke); background:rgba(255,255,255,.03); padding:12px; border-radius:12px; }
+    .list small{ color:var(--muted); display:block; margin-top:2px; }
+    .badge{ padding:4px 8px; border-radius:999px; font-size:.7rem; border:1px solid var(--stroke); background:rgba(255,255,255,.06); color:var(--muted); }
+    footer{opacity:.8; font-size:.85rem; color:var(--muted); text-align:center; padding:36px 10px;}
+    .em{ color:#a5f3fc; }
+    .flag{
+      position:absolute; right:16px; top:16px; width:68px; height:68px; border-radius:12px; overflow:hidden; border:1px solid var(--stroke);
+      box-shadow:var(--shadow);
+    }
+    .flag svg{ width:100%; height:100%; display:block; }
+    .note{ font-size:.85rem; color:var(--muted); }
+    .hidden{ display:none !important; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="brand-badge" aria-hidden="true"></div>
+      <div>ICT One‑Prompt <span class="badge">Wichita Tech</span></div>
+    </div>
+    <div class="cta">Ask one thing — <strong>≤ 25 words</strong></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="card hero-copy">
+        <div class="flag" title="Stylized Wichita vibe">
+          <!-- Abstract 'flag' homage (original artwork) -->
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#4f46e5"/>
+                <stop offset="1" stop-color="#06b6d4"/>
+              </linearGradient>
+            </defs>
+            <rect width="100" height="100" fill="url(#g1)" />
+            <circle cx="50" cy="50" r="26" fill="rgba(255,255,255,.9)" />
+            <circle cx="50" cy="50" r="12" fill="#0b1020" />
+            <g fill="rgba(255,255,255,.95)">
+              <rect x="48" y="5" width="4" height="18" rx="2"/>
+              <rect x="48" y="77" width="4" height="18" rx="2"/>
+              <rect x="77" y="48" width="18" height="4" rx="2"/>
+              <rect x="5" y="48" width="18" height="4" rx="2"/>
+            </g>
+          </svg>
+        </div>
+        <h1>Showcase Wichita’s tech scene with <span class="em">one prompt</span>.</h1>
+        <p class="sub">
+          This demo sells Wichita to founders, investors, and talent. Type a short ask and get a curated, persuasive snapshot—fast.
+        </p>
+        <div class="stat-row">
+          <div class="stat">Aerospace‑grade engineering culture</div>
+          <div class="stat">Affordable, central, collaborative</div>
+          <div class="stat">Universities + makerspaces + accelerators</div>
+        </div>
+      </div>
+
+      <div class="card prompt" aria-live="polite">
+        <form id="queryForm" class="flow" autocomplete="off">
+          <label for="q" class="note">Your single prompt (≤ 25 words). Pro tips: mention who you are and what you need.</label>
+          <div class="input-wrap">
+            <textarea id="q" name="q" placeholder="e.g., Pitch Wichita to a robotics founder seeking prototyping, talent, and investor intros." maxlength="300" aria-label="One prompt for Wichita tech"></textarea>
+            <button id="go" class="primary" type="submit" disabled>Showcase</button>
+          </div>
+          <div class="meter">
+            <span id="words">0/25 words</span>
+            <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+          </div>
+          <div class="chips" aria-label="quick examples">
+            <span class="chip" data-ex="Pitch Wichita to a fintech investor curious about deal flow.">Fintech investor pitch</span>
+            <span class="chip" data-ex="Where should software engineers plug into Wichita’s dev community?">Engineer plug‑in</span>
+            <span class="chip" data-ex="I’m a student: how do I learn, build, and find internships in Wichita?">Student path</span>
+            <span class="chip" data-ex="Show coworking, makerspaces, and prototype resources in Wichita.">Build spaces</span>
+          </div>
+          <p class="note">Constraint: one field, one action. If you exceed 25 words, the button disables.</p>
+        </form>
+      </div>
+    </section>
+
+    <section id="results" class="grid" style="margin-top:22px;">
+      <!-- Dynamic results appear here -->
+    </section>
+
+    <footer>
+      Prototype for demonstration only. Data is illustrative. Links provided for convenience—verify details independently.
+    </footer>
+  </main>
+
+  <script>
+    // ---- Mock curated data (demo) ----
+    const catalog = {
+      highlights: [
+        "World‑class engineering talent rooted in aviation and advanced manufacturing.",
+        "Lower operating costs; founders stretch runway further.",
+        "Central US location for national reach and quick travel.",
+        "Tight‑knit ecosystem: easy access to mentors and decision‑makers."
+      ],
+      orgs: [
+        {name:"WSU Innovation Campus", type:"Campus • R&D", url:"https://www.wichita.edu/innovation", blurb:"Applied learning, research labs, startups, and corporate partners."},
+        {name:"NIAR", type:"R&D • Materials", url:"https://www.niar.wichita.edu", blurb:"Aviation & material science labs; digital engineering expertise."},
+        {name:"Groover Labs", type:"Makerspace • Cowork", url:"https://www.grooverlabs.org", blurb:"3D printing, prototyping, classes, and events downtown."},
+        {name:"NXTUS", type:"Startup • Capital", url:"https://www.nxtus.io", blurb:"Founder support, capital connections, and startup programs."},
+        {name:"1 Million Cups — Wichita", type:"Community • Weekly", url:"https://www.1millioncups.com/wichita", blurb:"Founder presentations and community Q&A on Wednesdays."},
+        {name:"Flagship Kansas Tech", type:"Ecosystem • Workforce", url:"https://www.flagshipkansas.tech", blurb:"Statewide tech advocacy, workforce, and education programs."}
+      ],
+      communities:[
+        {name:"Wichita Dev ICT", type:"Slack • Developers", url:"#", blurb:"Developer meetups, channels, and job chatter."},
+        {name:"Startup Grind Wichita", type:"Founders • Events", url:"#", blurb:"Talks and networking with founders and investors."},
+        {name:"Women Who Code Wichita", type:"Developers • Community", url:"#", blurb:"Support, mentorship, and events for women in tech."}
+      ]
+    };
+
+    // Intent templates
+    const pitches = {
+      investor: "Deal flow without coastal burn: aerospace‑grade engineering, university R&D, and a collaborative network. Build, pilot, and scale efficiently from the country’s center.",
+      founder: "Prototype fast, hire dependable talent, and access mentors who pick up the phone. Wichita turns doers into builders with real runway.",
+      engineer: "Meaningful problems, modern stacks, low commute, high impact. Join teams shipping for aerospace, manufacturing, health, and fintech.",
+      student: "Learn by doing: university labs, makerspaces, internships, and weekly founder talks. Start building now—your network forms quickly here.",
+      events: "Meet founders every week, tour labs, and co‑work downtown. The calendar is dense and welcoming to first‑timers.",
+      spaces: "From campus labs to downtown makerspaces, you can prototype hardware by day and demo to the community by night.",
+      default: "Wichita blends practical engineering, community access, and affordability. It’s a founder‑friendly city where progress compounds quickly."
+    };
+
+    const intentKeywords = [
+      {id:"investor", words:["investor","invest","capital","vc","venture","fund"]},
+      {id:"founder",  words:["founder","startup","build","start","company"]},
+      {id:"engineer", words:["engineer","developer","software","data","dev","programmer"]},
+      {id:"student",  words:["student","intern","college","university","wsu"]},
+      {id:"events",   words:["event","events","meetup","meetups","hackathon","conference"]},
+      {id:"spaces",   words:["space","spaces","cowork","makerspace","lab","prototype","prototyping"]},
+      {id:"jobs",     words:["job","jobs","hiring","recruit","hire"]}
+    ];
+
+    // ---- Helpers ----
+    const $ = (s,root=document)=>root.querySelector(s);
+    const $$ = (s,root=document)=>[...root.querySelectorAll(s)];
+    const qEl = $("#q");
+    const goEl = $("#go");
+    const wordsEl = $("#words");
+    const barEl = $("#bar");
+    const resEl = $("#results");
+
+    function countWords(txt){
+      return (txt.trim().match(/\\S+/g)||[]).length;
+    }
+    function updateMeter(){
+      const n = countWords(qEl.value);
+      const percent = Math.min(100, (n/25)*100);
+      wordsEl.textContent = n + "/25 words";
+      barEl.style.width = percent + "%";
+      goEl.disabled = (n===0 || n>25);
+    }
+
+    qEl.addEventListener("input", updateMeter);
+    updateMeter();
+
+    // Chips prefill
+    $$(".chip").forEach(c => c.addEventListener("click", () => {
+      qEl.value = c.dataset.ex;
+      updateMeter();
+      qEl.focus();
+    }));
+
+    // URL param read/write
+    const params = new URLSearchParams(location.search);
+    if(params.has("q")){
+      qEl.value = params.get("q");
+      updateMeter();
+      // Auto-run if valid
+      if(countWords(qEl.value) > 0 && countWords(qEl.value) <= 25){
+        run(qEl.value);
+      }
+    }
+
+    $("#queryForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const query = qEl.value.trim();
+      if(countWords(query)===0 || countWords(query)>25) return;
+      // push state
+      const url = new URL(location.href);
+      url.searchParams.set("q", query);
+      history.replaceState({}, "", url.toString());
+      run(query);
+    });
+
+    function detectIntent(q){
+      const t = q.toLowerCase();
+      for(const set of intentKeywords){
+        if(set.words.some(w => t.includes(w))) return set.id;
+      }
+      return "default";
+    }
+
+    function pick(list, n=4){
+      const copy = [...list];
+      const out = [];
+      while(copy.length && out.length<n){
+        out.push(copy.splice(Math.floor(Math.random()*copy.length),1)[0]);
+      }
+      return out;
+    }
+
+    function run(query){
+      resEl.innerHTML = "";
+      const intent = detectIntent(query);
+
+      // Card 1: Tailored headline pitch
+      addCard("Your tailored pitch", `“${query}”`, pitches[intent] || pitches.default);
+
+      // Card 2: Why Wichita (highlights)
+      addListCard("Why Wichita", catalog.highlights.map(h => ({name:"• " + h, meta:""})));
+
+      // Card 3: Where to plug in (orgs)
+      const mix = pick(catalog.orgs, 4);
+      addLinkListCard("Plug in here first", mix);
+
+      // Optional: Communities (if talent/student/events)
+      if(["engineer","student","events","default"].includes(intent)){
+        addLinkListCard("Communities & meetups", pick(catalog.communities, 3));
+      }
+
+      // Optional: Next steps CTA
+      addCard("Next steps", "Make traction this week", "Visit a makerspace, attend a weekly founder talk, and meet two mentors. Momentum compounds in Wichita.");
+    }
+
+    function addCard(title, kicker, body){
+      const el = document.createElement("article");
+      el.className = "card result";
+      el.innerHTML = \`
+        <h3>\${title}</h3>
+        <p><span class="badge">\${kicker}</span></p>
+        <p>\${body}</p>
+      \`;
+      resEl.appendChild(el);
+    }
+
+    function addListCard(title, items){
+      const el = document.createElement("article");
+      el.className = "card result";
+      el.innerHTML = \`<h3>\${title}</h3>\`;
+      const list = document.createElement("div");
+      list.className = "list";
+      items.forEach(it => {
+        const row = document.createElement("div");
+        row.className = "list-row";
+        row.innerHTML = \`<div>\${it.name}</div>\` + (it.meta? \`<small>\${it.meta}</small>\`:"");
+        row.style.padding = "10px 12px";
+        row.style.border = "1px solid var(--stroke)";
+        row.style.borderRadius = "12px";
+        row.style.background = "rgba(255,255,255,.03)";
+        list.appendChild(row);
+      });
+      el.appendChild(list);
+      resEl.appendChild(el);
+    }
+
+    function addLinkListCard(title, items){
+      const el = document.createElement("article");
+      el.className = "card result";
+      el.innerHTML = \`<h3>\${title}</h3>\`;
+      const list = document.createElement("div");
+      list.className = "list";
+      items.forEach(it => {
+        const a = document.createElement("a");
+        a.href = it.url || "#";
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.innerHTML = \`<strong>\${it.name}</strong><small>\${it.type} — \${it.blurb}</small>\`;
+        list.appendChild(a);
+      });
+      el.appendChild(list);
+      resEl.appendChild(el);
+    }
+  </script>
+</body>
+</html>

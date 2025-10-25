@@ -1,17 +1,19 @@
 /**
- * Challenge 3: TBD
- * Placeholder component for the third challenge
- * Details and implementation to be determined
+ * Challenge 3: Wichita Tech Scene - One Prompt Demo
+ * Redirects to standalone HTML demo
  */
 
+import { useEffect } from 'react';
+
 export default function Challenge3() {
+  useEffect(() => {
+    // Redirect to standalone HTML demo
+    window.location.href = '/c3.html';
+  }, []);
+
   return (
-    <div className="challenge-placeholder">
-      <h1>Challenge 3</h1>
-      <p>Implementation coming soon...</p>
-      <p>
-        This challenge will be implemented as requirements are finalized.
-      </p>
+    <div style={{ padding: '2rem', textAlign: 'center' }}>
+      <p>Redirecting to Wichita Tech Demo...</p>
     </div>
   );
 }
