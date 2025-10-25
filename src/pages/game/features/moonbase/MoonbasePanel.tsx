@@ -28,12 +28,6 @@ export const MoonbasePanel: React.FC<MoonbasePanelProps> = ({
     }
   };
 
-  const getModuleColor = (progress: number): string => {
-    if (progress >= 100) return '#10b981'; // green
-    if (progress >= 50) return '#fbbf24'; // yellow
-    return '#8b5cf6'; // purple
-  };
-
   return (
     <div
       className="moonbase-panel"
