@@ -11,7 +11,7 @@ This is a workforce development application for the Kansas Department of Labor d
 ## Quick Reference
 
 ### Documentation
-*Documentation will be added as architectural patterns are established*
+- [Project Vision & High-Level Overview](https://docs.google.com/document/d/10wFO0kH4dSxpM89E1HsRr-z-TxXcfdvX-Km2PV53A9U/edit?tab=t.0) - Team vision document and project goals
 
 ### Active Work
 *Active specifications will be tracked here during development*
@@ -248,3 +248,5 @@ When preparing for technical walkthrough:
   - **CDK**: `cdk deploy` - deploys infrastructure and application
 - **View logs**: `aws logs tail /aws/lambda/function-name --follow` (for Lambda functions)
 - **Check deployment status**: Check AWS Console or `amplify status`
+- I'm working in tandem with 3 others. Make sure you pull any changes before pushing to main.
+- Keep commits small to avoid overwriting others work.
