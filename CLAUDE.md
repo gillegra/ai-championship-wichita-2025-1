@@ -11,12 +11,18 @@ This is a workforce development application for the Kansas Department of Labor d
 ## Quick Reference
 
 ### Documentation
-- [Project Vision & High-Level Overview](https://docs.google.com/document/d/10wFO0kH4dSxpM89E1HsRr-z-TxXcfdvX-Km2PV53A9U/edit?tab=t.0) - Team vision document and project goals
+- **[ReSkill KS Vision Document](https://docs.google.com/document/d/e/2PACX-1vQBZTH3qj2UTeSEOL0vmMCyg_L_aUg0V4QTNZMIaXKwSbN90a_kfaF_qRdT3pcVvleWUkcI_PATZUyl/pub)** - LIVE vision document (updated by team) - READ this BEFORE implementing or refactoring major modules
 
 ### Active Work
 *Active specifications will be tracked here during development*
 
 ## Critical Rules (MUST FOLLOW)
+
+### Vision Document (MANDATORY - READ FIRST)
+- ALWAYS read the [ReSkill KS Vision Document](https://docs.google.com/document/d/e/2PACX-1vQBZTH3qj2UTeSEOL0vmMCyg_L_aUg0V4QTNZMIaXKwSbN90a_kfaF_qRdT3pcVvleWUkcI_PATZUyl/pub) BEFORE implementing or refactoring major modules
+- ALWAYS verify your implementation aligns with current vision (document is LIVE and updated by team)
+- NEVER make architectural decisions without consulting the vision document first
+- WHY: Vision document is source of truth for project goals, features, and technical approach - team updates it in real-time
 
 ### File Creation (MANDATORY)
 - NEVER create files for reporting/status unless they track ONGOING work with action items
