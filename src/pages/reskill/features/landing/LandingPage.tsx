@@ -24,7 +24,7 @@ const LandingPage: React.FC = () => {
             <div className="cta-buttons">
               <button
                 className="btn-cta btn-primary-cta"
-                onClick={() => navigate('/reskill/intake')}
+                onClick={() => navigate('/reskill')}
               >
                 Start your 3-minute intake
               </button>
@@ -72,7 +72,7 @@ const LandingPage: React.FC = () => {
               </p>
               <button
                 className="btn-feature btn-primary"
-                onClick={() => navigate('/reskill/intake')}
+                onClick={() => navigate('/reskill')}
               >
                 Start Career Assessment →
               </button>

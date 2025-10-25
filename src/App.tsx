@@ -297,50 +297,46 @@ function App() {
             <Loading message="Generating your personalized career plan..." />
           ) : (
             <Routes>
-              {/* Root redirect to ReSkill Landing */}
-              <Route path="/" element={<Navigate to="/reskill" replace />} />
+              {/* Root - Landing Page */}
+              <Route path="/" element={<LandingPage />} />
 
-              {/* Challenge 1: ReSkill KS */}
-              <Route path="/reskill">
-                <Route index element={<LandingPage />} />
-                <Route
-                  path="intake"
-                  element={<ConversationalIntake onComplete={handleIntakeComplete} />}
-                />
-                <Route
-                  path="plan"
-                  element={
-                    careerPlan ? (
-                      <PlanView plan={careerPlan} onStartPlan={handleStartPlan} />
-                    ) : (
-                      <Navigate to="/reskill" replace />
-                    )
-                  }
-                />
-                <Route
-                  path="progress"
-                  element={
-                    careerPlan && userProgress ? (
-                      <ProgressDashboard
-                        plan={careerPlan}
-                        userProgress={userProgress}
-                        onUpdateProgress={handleUpdateProgress}
-                      />
-                    ) : (
-                      <Navigate to="/reskill" replace />
-                    )
-                  }
-                />
-                <Route
-                  path="agents"
-                  element={
-                    <AgentChat
-                      availableAgents={AVAILABLE_AGENTS}
-                      onSendMessage={handleSendAgentMessage}
+              {/* Challenge 1: ReSkill KS Intake */}
+              <Route path="/reskill" element={<ConversationalIntake onComplete={handleIntakeComplete} />} />
+
+              {/* ReSkill sub-routes */}
+              <Route
+                path="/reskill/plan"
+                element={
+                  careerPlan ? (
+                    <PlanView plan={careerPlan} onStartPlan={handleStartPlan} />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
+                }
+              />
+              <Route
+                path="/reskill/progress"
+                element={
+                  careerPlan && userProgress ? (
+                    <ProgressDashboard
+                      plan={careerPlan}
+                      userProgress={userProgress}
+                      onUpdateProgress={handleUpdateProgress}
                     />
-                  }
-                />
-              </Route>
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
+                }
+              />
+              <Route
+                path="/reskill/agents"
+                element={
+                  <AgentChat
+                    availableAgents={AVAILABLE_AGENTS}
+                    onSendMessage={handleSendAgentMessage}
+                  />
+                }
+              />
 
               {/* Challenge 2: Game */}
               <Route path="/game" element={<GameChallenge />} />
