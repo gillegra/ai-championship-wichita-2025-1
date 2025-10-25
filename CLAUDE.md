@@ -52,25 +52,40 @@ This is a workforce development application for the Kansas Department of Labor d
 - ALWAYS provide clear visual indicators of completion percentage
 - WHY: Career transitions take time; system must support long-term engagement
 
+### Bun Runtime & TypeScript
+- ALWAYS use `bun` commands instead of `npm` or `node` (e.g., `bun run`, `bun test`, not `npm run`)
+- ALWAYS check Bun compatibility for packages - most npm packages work but verify if issues arise
+- NEVER use `npm install` or `yarn` - use `bun install` for consistent lockfile (bun.lockb)
+- ALWAYS enable strict TypeScript mode - helps catch issues early
+- WHY: Bun is significantly faster but has slight differences; consistency prevents environment issues
+
 ## Development Workflows
 
 ### Project Setup (First Time)
-1. Install dependencies: `npm install` (or equivalent for chosen stack)
-2. Set up environment variables (copy `.env.example` to `.env`)
-3. Initialize database/storage (command TBD based on tech stack)
-4. Run development server (command TBD)
-5. Verify all three core modules load: intake portal, plan generation, progress dashboard
+1. Install Bun runtime: Follow instructions at https://bun.sh
+2. Install dependencies: `bun install`
+3. Set up environment variables (copy `.env.example` to `.env`)
+4. Initialize database/storage: `bun run db:init` (or equivalent)
+5. Start development server: `bun run dev`
+6. Verify all three core modules load: intake portal, plan generation, progress dashboard
 
 ### Running the Application
-- **Development server**: TBD based on framework choice
-- **Build for production**: TBD
-- **Run tests**: TBD
-- **Lint code**: TBD
+- **Development server**: `bun run dev` - starts React dev server with hot reload
+- **Build for production**: `bun run build` - creates optimized production bundle
+- **Run tests**: `bun test` - runs test suite with Bun's native test runner
+- **Type check**: `bun run type-check` or `tsc --noEmit` - validates TypeScript types
+- **Lint code**: `bun run lint` - runs ESLint (if configured)
+- **Format code**: `bun run format` - runs Prettier (if configured)
 
 ### Deploying Demo Site
-- **Target**: Publicly accessible URL for demo/review
-- **Process**: TBD based on hosting choice (Vercel/Netlify/AWS/etc.)
+- **Target**: Publicly accessible URL on AWS for demo/review
+- **Platform**: AWS (S3 + CloudFront for static hosting, or Amplify for full-stack)
+- **Process**:
+  - Build production bundle: `bun run build`
+  - Deploy to AWS using chosen method (AWS CLI, Amplify CLI, or CDK)
+  - Configure environment variables in AWS deployment environment
 - **Environment**: Ensure demo uses test data, not real user information
+- **Domain**: Configure custom domain or use AWS-provided URL
 
 ### Testing Agent Personas
 1. Create test intake scenarios representing diverse user profiles
@@ -104,6 +119,27 @@ This is a workforce development application for the Kansas Department of Labor d
 **Why**: Specialized agents provide focused expertise; personality differentiation improves user experience
 **Implementation**: Each agent has defined knowledge domain, response style, and trigger conditions
 
+### React Component Structure
+**How**: Organize components by feature/domain, not by technical type (components/IntakeForm/ not components/Forms/)
+**When**: Creating new components and organizing file structure
+**Why**: Feature-based organization scales better and keeps related code together
+**Pattern**:
+- `/src/features/intake/` - Intake portal components and logic
+- `/src/features/plan/` - Plan generation and display
+- `/src/features/progress/` - Progress tracking dashboard
+- `/src/features/agents/` - Agent persona implementations
+- `/src/shared/` - Truly shared components (Button, Input, etc.)
+
+### TypeScript Usage
+**How**: Use strict TypeScript configuration, define explicit types for all props and state
+**When**: Writing all new code
+**Why**: Type safety prevents runtime errors, improves code quality and developer experience
+**Requirements**:
+- NEVER use `any` type - use `unknown` if type truly unknown, then narrow with type guards
+- ALWAYS define interfaces for component props
+- ALWAYS type API responses and database models
+- USE utility types (`Partial<T>`, `Pick<T>`, `Omit<T>`) for DRY type definitions
+
 ## What You Need to Know
 
 ### Core Requirements
@@ -114,12 +150,15 @@ This application MUST deliver:
 4. **Agent Personas**: Multiple AI agents with distinct purposes assisting throughout journey
 5. **Public Demo**: Deployed site accessible for review and demonstration
 
-### Technology Stack Considerations
-- **Frontend**: Must support rich interactivity for intake and dashboard (React/Vue/Svelte candidates)
-- **Backend**: Must handle AI agent orchestration and plan generation
-- **Database**: Must persist user profiles, plans, and progress over extended timeframes
-- **AI Integration**: Must support multiple agent personas with distinct behaviors
-- **Hosting**: Must support public demo deployment
+### Technology Stack
+- **Runtime**: Bun - fast JavaScript runtime with built-in bundler, test runner, and package manager
+- **Frontend**: React with TypeScript - component-based UI library with type safety
+- **Language**: TypeScript - type-safe JavaScript for reduced bugs and better DX
+- **Backend**: Node.js/Bun backend or serverless (AWS Lambda) for AI agent orchestration
+- **Database**: AWS DynamoDB or RDS for persisting user profiles, plans, and progress
+- **AI Integration**: Anthropic Claude API or AWS Bedrock for agent personas
+- **Hosting**: AWS (S3 + CloudFront for static, or Amplify for full-stack deployment)
+- **State Management**: React Context API, Zustand, or Redux Toolkit (choose based on complexity)
 
 ### Kansas Context
 - Labor market trends in Kansas (growing sectors: healthcare, advanced manufacturing, technology)
@@ -180,20 +219,32 @@ When preparing for technical walkthrough:
 
 ## Commands Reference
 
-*This section will be populated once technology stack is selected and project is initialized.*
-
 ### Development
-- Start dev server: TBD
-- Run tests: TBD
-- Lint/format: TBD
-- Type check: TBD
+- **Install dependencies**: `bun install`
+- **Start dev server**: `bun run dev` - starts React dev server (typically port 3000 or 5173)
+- **Run tests**: `bun test` - runs all tests with Bun's native test runner
+- **Run specific test**: `bun test <file-path>` - runs single test file
+- **Type check**: `bun run type-check` or `tsc --noEmit` - validates TypeScript without emitting files
+- **Lint code**: `bun run lint` - runs ESLint
+- **Format code**: `bun run format` - runs Prettier
+- **Clean build**: `rm -rf dist/ .bun/` - removes build artifacts
+
+### Building
+- **Production build**: `bun run build` - creates optimized production bundle
+- **Preview build**: `bun run preview` - serves production build locally for testing
+- **Analyze bundle**: `bun run build --analyze` (if configured) - shows bundle size breakdown
 
 ### Database
-- Run migrations: TBD
-- Seed test data: TBD
-- Reset database: TBD
+- **Run migrations**: `bun run db:migrate` - applies pending database migrations
+- **Seed test data**: `bun run db:seed` - populates database with test data
+- **Reset database**: `bun run db:reset` - drops and recreates database (dev only)
+- **Generate types**: `bun run db:generate-types` - generates TypeScript types from schema
 
-### Deployment
-- Build production: TBD
-- Deploy to demo: TBD
-- View logs: TBD
+### Deployment (AWS)
+- **Build for production**: `bun run build`
+- **Deploy to AWS**: Depends on deployment method:
+  - **Amplify**: `amplify publish` - deploys via AWS Amplify CLI
+  - **S3/CloudFront**: `aws s3 sync dist/ s3://bucket-name --delete` - syncs static files
+  - **CDK**: `cdk deploy` - deploys infrastructure and application
+- **View logs**: `aws logs tail /aws/lambda/function-name --follow` (for Lambda functions)
+- **Check deployment status**: Check AWS Console or `amplify status`
