@@ -5,6 +5,7 @@ export interface GameState {
   clickPower: number;
   passiveIncomeRate: number;
   unlockedUpgrades: string[];
+  upgradeCounts: Record<string, number>;
   moduleProgress: ModuleProgressMap;
   gameStartTime: number;
   totalClicks: number;
@@ -27,6 +28,7 @@ export interface Upgrade {
   cost: number;
   effect: UpgradeEffect;
   wichitaFact?: string;
+  detailedInfo?: string;
   icon: string;
 }
 
