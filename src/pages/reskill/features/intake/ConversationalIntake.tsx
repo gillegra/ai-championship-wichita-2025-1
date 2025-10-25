@@ -75,11 +75,14 @@ const ConversationalIntake: React.FC<ConversationalIntakeProps> = ({ onComplete 
   }, []);
 
   // Ask the next question
-  const askNextQuestion = () => {
-    const step = INTAKE_STEPS[currentStepIndex];
+  const askNextQuestion = (stepIndex?: number, questionIndex?: number) => {
+    const stepIdx = stepIndex !== undefined ? stepIndex : currentStepIndex;
+    const questionIdx = questionIndex !== undefined ? questionIndex : currentQuestionIndex;
+
+    const step = INTAKE_STEPS[stepIdx];
     if (!step) return;
 
-    const question = step.questions[currentQuestionIndex];
+    const question = step.questions[questionIdx];
     if (!question) return;
 
     setCurrentQuestion(question);
@@ -132,7 +135,7 @@ const ConversationalIntake: React.FC<ConversationalIntakeProps> = ({ onComplete 
       if (nextQuestionIndex < step.questions.length) {
         // More questions in this step
         setCurrentQuestionIndex(nextQuestionIndex);
-        askNextQuestion();
+        askNextQuestion(currentStepIndex, nextQuestionIndex);
       } else {
         // Move to next step
         const nextStepIndex = currentStepIndex + 1;
@@ -140,7 +143,7 @@ const ConversationalIntake: React.FC<ConversationalIntakeProps> = ({ onComplete 
         if (nextStepIndex < INTAKE_STEPS.length) {
           setCurrentStepIndex(nextStepIndex);
           setCurrentQuestionIndex(0);
-          setTimeout(() => askNextQuestion(), 500);
+          setTimeout(() => askNextQuestion(nextStepIndex, 0), 500);
         } else {
           // All done! Submit the form
           if (isIntakeDataComplete(formData)) {
