@@ -6,6 +6,7 @@ interface MoonbasePanelProps {
   modules: MoonbaseModule[];
   moduleProgress: ModuleProgressMap;
   innovationCapital: number;
+  overallProgress: number;
   onInvest: (moduleId: keyof ModuleProgressMap, amount: number) => void;
 }
 
@@ -13,10 +14,11 @@ export const MoonbasePanel: React.FC<MoonbasePanelProps> = ({
   modules,
   moduleProgress,
   innovationCapital,
+  overallProgress,
   onInvest,
 }) => {
   const [investAmounts, setInvestAmounts] = useState<Record<string, number>>({});
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleInvest = (module: MoonbaseModule) => {
     const amount = investAmounts[module.id] || 0;
@@ -43,6 +45,25 @@ export const MoonbasePanel: React.FC<MoonbasePanelProps> = ({
         border: '1px solid #2563eb',
       }}
     >
+      {/* Moonbase Progress */}
+      <div style={{
+        marginBottom: '16px',
+        padding: '12px',
+        backgroundColor: '#374151',
+        borderRadius: '8px',
+        border: '1px solid #8b5cf6',
+      }}>
+        <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#fff', marginBottom: '8px' }}>
+          🌙 Moonbase Progress
+        </div>
+        <ProgressBar
+          progress={overallProgress}
+          showPercentage={true}
+          color="#8b5cf6"
+          height="16px"
+        />
+      </div>
+
       <div
         onClick={() => setIsExpanded(!isExpanded)}
         style={{
@@ -86,12 +107,12 @@ export const MoonbasePanel: React.FC<MoonbasePanelProps> = ({
                 {isComplete && <span style={{ fontSize: '18px' }}>✅</span>}
               </div>
 
-              <ProgressBar
+              {/* <ProgressBar
                 progress={progress}
                 showPercentage={true}
                 color={getModuleColor(progress)}
                 height="10px"
-              />
+              /> */}
 
               {!isComplete && (
                 <div style={{ marginTop: '8px', display: 'flex', gap: '6px', alignItems: 'center' }}>

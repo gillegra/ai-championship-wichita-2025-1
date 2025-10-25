@@ -16,6 +16,11 @@
   height: calc(100vh - 70px);
 }
 
+/* Hide reskill progress bar on game page */
+.app.game-page .progress-bar-container {
+  display: none !important;
+}
+
 @media (max-width: 768px) {
   .app-main {
     padding-top: 120px; /* More space for taller header on mobile */

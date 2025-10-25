@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import type { IntakeData, CareerPlan, UserProgress, AgentType } from '@/types';
 import Header from './shared/components/Header';
 import LandingPage from './pages/reskill/features/landing/LandingPage';
@@ -183,7 +183,10 @@ const generateMockProgress = (plan: CareerPlan): UserProgress => {
   };
 };
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  const isGamePage = location.pathname.startsWith('/game');
+
   const [_intakeData, setIntakeData] = useState<IntakeData | null>(null);
   const [careerPlan, setCareerPlan] = useState<CareerPlan | null>(null);
   const [userProgress, setUserProgress] = useState<UserProgress | null>(null);
@@ -288,17 +291,16 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <div className="app">
-        <Header />
+    <div className={`app ${isGamePage ? 'game-page' : ''}`}>
+      {!isGamePage && <Header />}
 
-        <main className="app-main">
-          {isGeneratingPlan ? (
-            <Loading message="Generating your personalized career plan..." />
-          ) : (
-            <Routes>
-              {/* Root - Landing Page */}
-              <Route path="/" element={<LandingPage />} />
+      <main className="app-main" style={isGamePage ? { padding: 0, height: '100vh' } : {}}>
+        {isGeneratingPlan ? (
+          <Loading message="Generating your personalized career plan..." />
+        ) : (
+          <Routes>
+              {/* Root redirect to ReSkill Landing */}
+              <Route path="/" element={<Navigate to="/reskill" replace />} />
 
               {/* Challenge 1: ReSkill KS Intake */}
               <Route path="/reskill" element={<ConversationalIntake onComplete={handleIntakeComplete} />} />
@@ -346,10 +348,17 @@ function App() {
 
               {/* Challenge 4: TBD */}
               <Route path="/c4" element={<Challenge4 />} />
-            </Routes>
-          )}
-        </main>
-      </div>
+          </Routes>
+        )}
+      </main>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   );
 }

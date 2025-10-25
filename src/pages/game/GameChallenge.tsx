@@ -88,7 +88,6 @@ export default function GameChallenge() {
               onClick={handleClick}
               clickPower={gameState.clickPower}
               passiveIncomeRate={gameState.passiveIncomeRate}
-              overallProgress={overallProgress}
             />
           </div>
 
@@ -98,6 +97,7 @@ export default function GameChallenge() {
               modules={modules}
               moduleProgress={gameState.moduleProgress}
               innovationCapital={gameState.innovationCapital}
+              overallProgress={overallProgress}
               onInvest={investInModule}
             />
 
