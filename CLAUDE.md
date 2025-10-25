@@ -4,7 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Context
 
-**ReSkill KS** empowers Kansas citizens to discover career opportunities, develop new skills, and advance professionally. The system features an interactive intake portal, AI-driven personalized career transition plans, progress tracking, and multiple agent personas to guide users through their learning journey.
+**ReSkill KS** empowers Kansas citizens to discover career opportunities, develop new skills, and advance professionally. This is a multi-challenge application with distinct sub-routes for different experiences:
+
+### Challenge Structure
+1. **"Reskill"** (PRIMARY - `/reskill`) - Workforce development platform with intake portal, AI-driven personalized career transition plans, progress tracking, and multiple agent personas
+2. **"Game"** (PLACEHOLDER - `/game`) - Second challenge (details TBD)
+3. **Challenge 3** (TBD - route TBD)
+4. **Challenge 4** (TBD - route TBD)
 
 **Mission-Critical Constraint**: This application serves public-sector users who may have varying levels of digital literacy. Accessibility, simplicity, and clear guidance are paramount.
 
@@ -12,9 +18,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Documentation
 - **[ReSkill KS Vision Document](https://docs.google.com/document/d/e/2PACX-1vQBZTH3qj2UTeSEOL0vmMCyg_L_aUg0V4QTNZMIaXKwSbN90a_kfaF_qRdT3pcVvleWUkcI_PATZUyl/pub)** - LIVE vision document (updated by team) - READ this BEFORE implementing or refactoring major modules
+- [Challenge Structure](docs/challenges.md) - Overview of all 4 challenges, routes, and implementation status - READ when working on routing or adding new challenges
 
 ### Active Work
-*Active specifications will be tracked here during development*
+- **Challenge 1 "Reskill"**: ✅ COMPLETE - Core MVP implemented
+- **Challenge 2 "Game"**: 🚧 NOT STARTED - Placeholder route reserved, details TBD
+- **Challenges 3 & 4**: 🚧 NOT STARTED - Routes and details TBD
 
 ## Critical Rules (MUST FOLLOW)
 
@@ -130,11 +139,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **When**: Creating new components and organizing file structure
 **Why**: Feature-based organization scales better and keeps related code together
 **Pattern**:
-- `/src/features/intake/` - Intake portal components and logic
-- `/src/features/plan/` - Plan generation and display
-- `/src/features/progress/` - Progress tracking dashboard
-- `/src/features/agents/` - Agent persona implementations
-- `/src/shared/` - Truly shared components (Button, Input, etc.)
+- `/src/features/intake/` - Intake portal (Challenge 1: Reskill)
+- `/src/features/plan/` - Plan generation and display (Challenge 1: Reskill)
+- `/src/features/progress/` - Progress tracking dashboard (Challenge 1: Reskill)
+- `/src/features/agents/` - Agent persona implementations (Challenge 1: Reskill)
+- `/src/features/game/` - Challenge 2 components (when implemented)
+- `/src/shared/` - Truly shared components across all challenges (Button, Header, etc.)
+
+**Multi-Challenge Pattern**:
+- Each challenge gets its own feature directory
+- Challenges are isolated and can be developed independently
+- Shared components go in `/src/shared/` only if used by multiple challenges
+- READ docs/challenges.md BEFORE adding new challenge features
 
 ### TypeScript Usage
 **How**: Use strict TypeScript configuration, define explicit types for all props and state
