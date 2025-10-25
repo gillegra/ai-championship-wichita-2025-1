@@ -1,0 +1,42 @@
+[
+  {
+    "id": "air-capital",
+    "fact": "Wichita produces more aircraft than any other city on Earth, earning it the title 'Air Capital of the World.'",
+    "category": "aerospace"
+  },
+  {
+    "id": "companies",
+    "fact": "Spirit AeroSystems, Textron Aviation, and other aerospace companies employ thousands of skilled workers in Wichita.",
+    "category": "aerospace"
+  },
+  {
+    "id": "history",
+    "fact": "Wichita has over 100 years of aviation innovation history, from early biplanes to modern jets.",
+    "category": "aerospace"
+  },
+  {
+    "id": "manufacturing",
+    "fact": "Wichita's advanced manufacturing capabilities extend from general aviation to commercial aircraft components.",
+    "category": "innovation"
+  },
+  {
+    "id": "workforce",
+    "fact": "The skilled aerospace workforce in Wichita represents decades of knowledge passed down through generations.",
+    "category": "innovation"
+  },
+  {
+    "id": "keeper",
+    "fact": "The Keeper of the Plains, a 44-foot steel sculpture, has watched over Wichita since 1974.",
+    "category": "landmark"
+  },
+  {
+    "id": "future",
+    "fact": "Wichita's innovation ecosystem continues to evolve, with partnerships between universities and industry driving aerospace advancements.",
+    "category": "innovation"
+  },
+  {
+    "id": "legacy",
+    "fact": "From training WWII pilots to building the planes that connect our world, Wichita's aerospace legacy is unmatched.",
+    "category": "aerospace"
+  }
+]

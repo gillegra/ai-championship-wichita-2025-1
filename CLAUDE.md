@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Challenge Structure
 1. **"Reskill"** (PRIMARY - `/reskill`) - Workforce development platform with intake portal, AI-driven personalized career transition plans, progress tracking, and multiple agent personas
-2. **"Game"** (PLACEHOLDER - `/game`) - Second challenge (details TBD)
+2. **"Wichita to the Moon"** (COMPLETE - `/game`) - Resource management clicker game celebrating Wichita's aerospace heritage
 3. **Challenge 3** (TBD - route TBD)
 4. **Challenge 4** (TBD - route TBD)
 
@@ -19,10 +19,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Documentation
 - **[ReSkill KS Vision Document](https://docs.google.com/document/d/e/2PACX-1vQBZTH3qj2UTeSEOL0vmMCyg_L_aUg0V4QTNZMIaXKwSbN90a_kfaF_qRdT3pcVvleWUkcI_PATZUyl/pub)** - LIVE vision document (updated by team) - READ this BEFORE implementing or refactoring major modules
 - [Challenge Structure](docs/challenges.md) - Overview of all 4 challenges, routes, and implementation status - READ when working on routing or adding new challenges
+- **[Game Implementation Guide](src/pages/game/README.md)** - MANDATORY READ when working on Challenge 2 game - Architecture, systems, workflows, debugging
 
 ### Active Work
 - **Challenge 1 "Reskill"**: ✅ COMPLETE - Core MVP implemented
-- **Challenge 2 "Game"**: 🚧 NOT STARTED - Placeholder route reserved, details TBD
+- **Challenge 2 "Wichita to the Moon"**: ✅ COMPLETE - Clicker game MVP implemented
 - **Challenges 3 & 4**: 🚧 NOT STARTED - Routes and details TBD
 
 ## Critical Rules (MUST FOLLOW)
@@ -42,6 +43,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   - NO → docs/ (only if permanent architectural value)
   - Neither → DON'T CREATE, communicate verbally
 - WHY: Every file is maintenance burden. Minimize files, maximize verbal communication.
+
+### Game Development (Challenge 2 - MANDATORY)
+- **ALWAYS read [Game Implementation Guide](src/pages/game/README.md) BEFORE modifying game code**
+- NEVER change game balance (upgrade costs, module requirements) without consulting PRD and playtesting
+- ALWAYS keep game data in JSON files (`data/*.json`) - separate content from logic
+- NEVER add external dependencies without justification (game uses inline CSS-in-JS, no libraries)
+- ALWAYS test game end-to-end after changes (click → purchase → invest → win)
+- READ `hooks/useGameState.ts` to understand central game logic BEFORE modifying features
+- WHY: Game architecture is intentionally simple; complexity creep would undermine MVP goals
 
 ### AI Agent Integration
 - ALWAYS design agent personas with distinct purposes (intake assistant, career counselor, progress coach, etc.)

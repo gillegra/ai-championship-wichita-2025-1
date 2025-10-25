@@ -1,0 +1,158 @@
+[
+  {
+    "id": "keeper-of-plains",
+    "name": "Keeper of the Plains",
+    "description": "Iconic landmark inspiring innovation",
+    "cost": 100,
+    "effect": {
+      "type": "clickPower",
+      "value": 10
+    },
+    "wichitaFact": "44-foot steel sculpture overlooking Arkansas River confluence, symbolizing Wichita's Native American heritage",
+    "detailedInfo": "Created by renowned Kiowa-Comanche artist Blackbear Bosin (1921-1980), this 44-foot steel sculpture was erected on May 18, 1974, to celebrate the U.S. Bicentennial. Standing at the sacred confluence of the Big and Little Arkansas Rivers, the Keeper honors the area's Indigenous peoples with hands raised in supplication to the Great Spirit. In 2006, it was elevated on a 30-foot rock promontory for greater visibility and surrounded by the Ring of Fire—lit fire pots that illuminate each evening, making it Wichita's most beloved and recognized symbol.",
+    "icon": "🗿"
+  },
+  {
+    "id": "spirit-aero",
+    "name": "Spirit AeroSystems",
+    "description": "World-class aerostructures manufacturer",
+    "cost": 500,
+    "effect": {
+      "type": "clickPower",
+      "value": 50
+    },
+    "wichitaFact": "World's largest first-tier aerostructures manufacturer, building fuselages for Boeing aircraft",
+    "detailedInfo": "Founded as Stearman Aircraft in 1927, acquired by Boeing in 1941, this facility produced legendary aircraft including the B-29 Superfortress and B-52 Stratofortress. Boeing spun off the Wichita division in 2005 to create Spirit AeroSystems, which became the world's largest aerostructures manufacturer. Spirit produces approximately 70% of Boeing 737 fuselages and major sections for the 787 Dreamliner. In July 2024, Boeing agreed to reacquire Spirit for $4.7 billion, with the transaction expected to close in 2025, bringing the operation full circle.",
+    "icon": "✈️"
+  },
+  {
+    "id": "textron-aviation",
+    "name": "Textron Aviation",
+    "description": "General aviation leader (Cessna & Beechcraft)",
+    "cost": 750,
+    "effect": {
+      "type": "passiveIncome",
+      "value": 100
+    },
+    "wichitaFact": "Home of Cessna and Beechcraft, leaders in general aviation with over 90 years of history",
+    "detailedInfo": "Formed in 2014 when Textron merged Cessna (founded 1927 by Clyde Cessna) and Beechcraft (founded 1932 by Walter and Olive Ann Beech). Both companies have called Wichita home since their inception. Together, they represent the 'Big Two' of general aviation, having delivered over 251,000 aircraft to more than 170 countries, accumulating over 100 million flight hours. Cessna's Citation business jets and Beechcraft's King Air turboprops continue to set industry standards for performance and reliability.",
+    "icon": "🛩️"
+  },
+  {
+    "id": "wsu-innovation",
+    "name": "WSU Innovation Campus",
+    "description": "University-industry research partnership",
+    "cost": 1200,
+    "effect": {
+      "type": "passiveIncome",
+      "value": 150
+    },
+    "wichitaFact": "Collaborative hub connecting Wichita State University with aerospace industry for cutting-edge research",
+    "detailedInfo": "Situated on 120 acres, this is one of the nation's largest and fastest-growing research/innovation parks. WSU ranks #1 nationally for aerospace engineering R&D expenditures ($327 million in FY2023), surpassing Georgia Tech, Utah State, and Johns Hopkins. Home to the National Institute for Aviation Research (NIAR) with 1,200 employees and 1.6 million sq ft of lab space. Industry partners including Airbus, Spirit AeroSystems, NetApp, and Textron collaborate directly with students and faculty on cutting-edge aerospace, AI, and advanced manufacturing research.",
+    "icon": "🎓"
+  },
+  {
+    "id": "mcconnell-afb",
+    "name": "McConnell Air Force Base",
+    "description": "Air refueling operations center",
+    "cost": 2000,
+    "effect": {
+      "type": "clickPower",
+      "value": 200
+    },
+    "wichitaFact": "Home to the 22nd Air Refueling Wing, supporting global military operations since 1951",
+    "detailedInfo": "Originally Wichita Municipal Airport (1929), it became Wichita Air Force Base in 1953 and was renamed McConnell AFB in 1954 to honor three WWII flying brothers: Fred, Thomas, and Edwin McConnell. The 22nd Air Refueling Wing has been the host unit since 1994, operating KC-135R Stratotankers and, since 2019, the new KC-46 Pegasus aircraft. The base supports global air refueling operations and hosts Air Mobility Command, Air Force Reserve Command, and Kansas Air National Guard units, making it a critical hub for U.S. military aviation.",
+    "icon": "🛫"
+  },
+  {
+    "id": "stearman-field",
+    "name": "Stearman Field Heritage",
+    "description": "WWII pilot training legacy",
+    "cost": 3500,
+    "effect": {
+      "type": "passiveIncome",
+      "value": 500
+    },
+    "wichitaFact": "Historic site where thousands of pilots learned to fly during WWII, part of Wichita's aviation heritage",
+    "detailedInfo": "Between 1936 and 1944, Boeing's Wichita facility (formerly Stearman Aircraft Division) manufactured 8,584 Stearman training biplanes. During the height of WWII production in 1941, a new aircraft rolled off the assembly line every 90 minutes. These rugged PT-13/PT-17 trainers prepared approximately 800,000 Allied pilots for combat, representing 44% of all U.S. primary trainers. The Stearman biplane's simple, durable design made it ideal for novice pilots, and many still fly today as a testament to Wichita's wartime manufacturing excellence.",
+    "icon": "🎖️"
+  },
+  {
+    "id": "netapp",
+    "name": "NetApp Tech Hub",
+    "description": "Global data infrastructure innovator",
+    "cost": 5000,
+    "effect": {
+      "type": "clickPower",
+      "value": 300
+    },
+    "wichitaFact": "Major technology company with significant Wichita presence, driving cloud data infrastructure innovation",
+    "detailedInfo": "In June 2022, global cloud data services leader NetApp opened a $54 million, 168,000 sq ft Midwest headquarters on WSU Innovation Campus. This state-of-the-art facility houses 500 engineers and 60 students, featuring 420 data server racks, a large-scale data center, and an AI SuperPOD/HPC Center of Excellence. NetApp's Wichita hub supports critical civilian and defense research, including AI/machine learning simulations for crash testing and missile defense, demonstrating how Wichita is diversifying beyond traditional aerospace into cutting-edge technology sectors.",
+    "icon": "💻"
+  },
+  {
+    "id": "koch-industries",
+    "name": "Koch Industries",
+    "description": "Innovation and manufacturing excellence",
+    "cost": 7500,
+    "effect": {
+      "type": "passiveIncome",
+      "value": 1000
+    },
+    "wichitaFact": "One of the world's largest privately held companies, headquartered in Wichita since 1927",
+    "detailedInfo": "Founded when Fred C. Koch joined an engineering firm in Wichita in 1925, the company's breakthrough came in 1927 with a revolutionary thermal cracking process for refining crude oil. After legal battles with established oil companies, Koch expanded internationally before returning to U.S. operations. Today, Koch Industries is the second-largest privately held company in the United States (after Cargill), with diverse holdings in manufacturing, refining, chemicals, and more. The company has maintained its Wichita headquarters since 1925, serving as a major employer and economic anchor for the region.",
+    "icon": "🏭"
+  },
+  {
+    "id": "aviation-district",
+    "name": "Aviation Manufacturing District",
+    "description": "Aerospace supplier cluster",
+    "cost": 10000,
+    "effect": {
+      "type": "clickMultiplier",
+      "value": 2
+    },
+    "wichitaFact": "Dense cluster of aerospace suppliers and OEMs creating a world-class manufacturing ecosystem",
+    "detailedInfo": "Over a century of aircraft production has cultivated a dense ecosystem of 350+ aerospace suppliers in the Wichita region and 450+ statewide. This cluster includes precision machine shops, tool and die facilities, composites manufacturers, and specialized aerospace subcontractors. Eighteen Boeing-certified gold and silver suppliers operate within a 200-mile radius. This concentration creates unparalleled supply chain efficiency, enabling rapid prototyping, just-in-time manufacturing, and collaborative innovation among OEMs like Spirit, Textron, and Airbus with their supplier networks—a competitive advantage no other region can match.",
+    "icon": "🏗️"
+  },
+  {
+    "id": "wichita-workforce",
+    "name": "Wichita Workforce",
+    "description": "Skilled aerospace talent pool",
+    "cost": 15000,
+    "effect": {
+      "type": "passiveMultiplier",
+      "value": 2
+    },
+    "wichitaFact": "Over 30,000 skilled aerospace workers making Wichita the 'Air Capital of the World'",
+    "detailedInfo": "Wichita's 30,000+ aerospace workers represent the most specialized manufacturing workforce in the United States. The region's aerospace employment concentration is 33 times higher than the national average—the highest in the nation. These skilled professionals bring generations of expertise in composites fabrication, precision machining, avionics integration, and aircraft assembly. Ranked #1 for skilled aviation workforce nationally, Wichita workers benefit from partnerships between industry and educational institutions like WSU, ensuring continuous training in emerging technologies like additive manufacturing, automation, and advanced materials.",
+    "icon": "👷"
+  },
+  {
+    "id": "air-capital-legacy",
+    "name": "Air Capital Legacy",
+    "description": "Century of aviation leadership",
+    "cost": 25000,
+    "effect": {
+      "type": "clickMultiplier",
+      "value": 3
+    },
+    "wichitaFact": "100+ years of aviation innovation - Wichita produces more aircraft than any other city on Earth",
+    "detailedInfo": "For over a century, Wichita has earned and maintained the title 'Air Capital of the World.' The city produces more aircraft annually than any other location on Earth, with aerospace employment concentration 33x the U.S. average. From the pioneering days of Clyde Cessna, Walter Beech, and Lloyd Stearman in the 1920s to today's production of Boeing 737 fuselages, Citation business jets, and King Air turboprops, Wichita's aviation legacy is unmatched. This heritage isn't just historical—it's a living ecosystem of innovation, manufacturing excellence, and aerospace leadership that continues to define the city's identity and economic future.",
+    "icon": "🌟"
+  },
+  {
+    "id": "moonshot-mentality",
+    "name": "Moonshot Mentality",
+    "description": "Bold innovation culture",
+    "cost": 50000,
+    "effect": {
+      "type": "passiveMultiplier",
+      "value": 3
+    },
+    "wichitaFact": "Wichita's can-do spirit and culture of bold innovation - from aircraft to moonbases",
+    "detailedInfo": "Wichita's aerospace heritage embodies a 'can-do' spirit that tackles seemingly impossible challenges. This is the city that produced B-29 Superfortresses that ended WWII, B-52 Stratofortresses that have served for 70+ years, and continues pushing boundaries in advanced manufacturing, AI research, and composite materials. The moonshot mentality isn't about reaching the moon—it's about the bold innovation culture that believes no engineering challenge is too great, no deadline too tight, and no goal too ambitious. From building an aircraft every 90 minutes in 1941 to developing AI-driven aerospace simulations today, Wichita's mindset is: if it can be built, we'll build it here.",
+    "icon": "🚀"
+  }
+]
