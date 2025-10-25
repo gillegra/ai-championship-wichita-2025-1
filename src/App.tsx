@@ -2,7 +2,7 @@ import { useState, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import type { IntakeData, CareerPlan, UserProgress, AgentType } from './pages/reskill/types';
 import Header from './shared/components/Header';
-import IntakePortal from './pages/reskill/features/intake/IntakePortal';
+import ConversationalIntake from './pages/reskill/features/intake/ConversationalIntake';
 import PlanView from './pages/reskill/features/plan/PlanView';
 import ProgressDashboard from './pages/reskill/features/progress/ProgressDashboard';
 import AgentChat from './pages/reskill/features/agents/AgentChat';
@@ -303,7 +303,7 @@ function App() {
               <Route path="/reskill">
                 <Route
                   index
-                  element={<IntakePortal onComplete={handleIntakeComplete} />}
+                  element={<ConversationalIntake onComplete={handleIntakeComplete} />}
                 />
                 <Route
                   path="plan"
